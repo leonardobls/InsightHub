@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="home">
+    @*Acrescentar header*@
+    <div class="search_bar">
+        <form action="">
+            <div class="row">
+                <label for="search_tool">
+                    <p>Busca rápida:</p>
+                    <input id="search_tool" type="text" name="search_tool" placeholder="Escreva o que você deseja buscar">
+                    <span class="error"></span>
+                </label>
+            </div>
+        </form>
+    </div>
+
+    <div class="advanced_search">
+        <form action="">
+            <label for="filters">
+                <p>Busca avançada:</p>
+                <div class="row" id="filters">
+                    <label for="select_1">
+                        <p>Filtro 1</p>
+                        <select id="select_1">
+                            <option value="0" disabled="True" selected="True">Selecione uma opção</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </label>
+
+
+                    <label for="select_2">
+                        <p>Filtro 2</p>
+                        <select id="select_2">
+                            <option value="0" disabled="True" selected="True">Selecione uma opção</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </label>
+
+                    <label for="select_3">
+                        <p>Filtro 3</p>
+                        <select id="select_3">
+                            <option value="0" disabled="True" selected="True">Selecione uma opção</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </label>
+
+                    <label for="select_4">
+                        <p>Filtro 4</p>
+                        <select id="select_4">
+                            <option value="0" disabled="True" selected="True">Selecione uma opção</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </label>
+
+                    <p>Busca avançada:</p>
+                    <input id="search_tool" type="text" name="search_tool" placeholder="Escreva o que você deseja buscar">
+                    <span class="error"></span>
+                </div>
+            </label>
+        </form>
+    </div>
+
+</section>
