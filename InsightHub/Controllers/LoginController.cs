@@ -10,4 +10,10 @@ public class LoginController : Controller
     {
         return View();
     }
+
+    public IActionResult Home()
+    {
+        return View();
+    }
+
 }
