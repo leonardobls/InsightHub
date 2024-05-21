@@ -55,6 +55,7 @@ html{
         border-radius: 20px;
         padding: 2%;
         margin: 2%;
+        margin-top: 0px;
         
         form {
             .row{
@@ -91,4 +92,27 @@ html{
         }
     }
     
+    .detail_panels{
+        display: flex;
+        align-items: left;
+        justify-content: center;
+
+        div{
+            width: 30%;
+            height: 500px;
+            border: 2px solid black;
+            border-radius: 10%;
+            margin: 1%;
+            display: flex;
+            align-items: left;
+            background-color: antiquewhite;
+
+            p{
+                padding: 8%;
+                padding-right: 0%;
+                font-size: larger;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;                //text-align: center;
+            }
+        }
+    }
 }
