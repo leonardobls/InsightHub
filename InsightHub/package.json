@@ -3,7 +3,7 @@
     "sass": "^1.77.0"
   },
 
-  "scripts": {
+ "scripts": {
     "sass-dev": "sass --watch --update --style=expanded wwwroot/scss:wwwroot/css"
   }
 }
