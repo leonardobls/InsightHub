@@ -1,8 +1,13 @@
+html{
+    background-color: #1c8283;
+}
+
 .home{
     background-color: #1c8283;
 
     .search_bar{
         form {
+            margin-top: 2%;
             padding: 0 10%;
             width: 100%;
     
@@ -41,28 +46,73 @@
                 padding: 20px;
                 border: 3px solid darkgray;
             }
-    
-            button {
-                width: 100%;
-                margin: 0;
-                padding: 0;
-                border: none;
-                font: inherit;
-                color: inherit;
-                background: none;
-                appearance: none;
-                outline: none;
-                background: #000;
-                border-radius: 10px;
-                padding: 10px 30px;
-                color: #FFF;
-            }
         }
     }
 
     .advanced_search{
-        background-color: #FFF;
-        border: 3px, solid, #000;
+        background-color: rgb(230, 226, 219);
+        border: 3px solid #000;
+        border-radius: 20px;
+        padding: 2%;
+        margin: 2%;
+        margin-top: 0px;
+        
+        form {
+            .row{
+                display: flex;
+                align-items: center;
+                label {
+                    width: fit-content;
+                    width: 20%;
+                    font-size: 80%;
+                    margin-bottom: 0px;
+
+                    select {
+                        width: 100%;
+                        border: 3px solid black;
+                        border-radius: 25px;
+                        text-align: center;
+                        font-size: 105%;
+                        padding: 5%;
+                    }
+
+                    .search_button {
+                        //background:url(images/logo.png) no-repeat; 
+                        border: 2px solid black;
+                        border-radius: 50%;
+                        background-color: #000;
+                        color: #FFF;
+                        background-image: "images/logo.png";
+                        display:block;
+                        height: 50px;
+                        width: 50px;
+                    }
+                }                
+            }
+        }
     }
     
+    .detail_panels{
+        display: flex;
+        align-items: left;
+        justify-content: center;
+
+        div{
+            width: 30%;
+            height: 500px;
+            border: 2px solid black;
+            border-radius: 10%;
+            margin: 1%;
+            display: flex;
+            align-items: left;
+            background-color: antiquewhite;
+
+            p{
+                padding: 8%;
+                padding-right: 0%;
+                font-size: larger;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;                //text-align: center;
+            }
+        }
+    }
 }
