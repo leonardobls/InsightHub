@@ -3,64 +3,71 @@
 }
 
 <section class="home">
-    @*Acrescentar header*@
-    <div class="search_bar">
+    <div class="home__search_bar">
         <form action="">
             <div class="row">
-                <label for="search_tool">
-                    <p>Busca rápida:</p>
-                    <input id="search_tool" type="text" name="search_tool" placeholder="Escreva o que você deseja buscar">
+                <p>Busca rápida:</p>
+                <label class="input-wrapper" for="fast_search">
+                    <input id="fast_search" type="text" name="fastSearch"
+                        placeholder="Escreva o que você deseja buscar">
                     <span class="error"></span>
                 </label>
             </div>
+            <button type="submit" class="button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#e8eaed">
+                    <path
+                        d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                </svg>
+            </button>
         </form>
     </div>
 
     <div class="advanced_search">
         <form action="">
-                <p>Busca avançada:</p>
-                <div class="row" id="filters">
-                    <label for="select_1">
-                        Filtro 1:
-                        <select id="select_1">
-                            <option value="0" disabled="True" selected="True">Selecione uma opção</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                    </label>
+            <p>Busca avançada:</p>
+            <div class="row" id="filters">
+                <label for="select_1">
+                    Filtro 1:
+                    <select id="select_1">
+                        <option value="0" disabled="True" selected="True">Selecione uma opção</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
 
 
-                    <label for="select_2">
-                        Filtro 2:
-                        <select id="select_2">
-                            <option value="0" disabled="True" selected="True">Selecione uma opção</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                    </label>
+                <label for="select_2">
+                    Filtro 2:
+                    <select id="select_2">
+                        <option value="0" disabled="True" selected="True">Selecione uma opção</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
 
-                    <label for="select_3">
-                        Filtro 3:
-                        <select id="select_3">
-                            <option value="0" disabled="True" selected="True">Selecione uma opção</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                    </label>
+                <label for="select_3">
+                    Filtro 3:
+                    <select id="select_3">
+                        <option value="0" disabled="True" selected="True">Selecione uma opção</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
 
-                    <label for="select_4">
-                        Filtro 4:
-                        <select id="select_4">
-                            <option value="0" disabled="True" selected="True">Selecione uma opção</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                    </label>
+                <label for="select_4">
+                    Filtro 4:
+                    <select id="select_4">
+                        <option value="0" disabled="True" selected="True">Selecione uma opção</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
 
-                    <label for="button_1">
-                        <button type="submit" class="search_button"></button>
-                    </label>
-                </div>
+                <label for="button_1">
+                    <button type="submit" class="search_button"></button>
+                </label>
+            </div>
         </form>
     </div>
 
@@ -68,7 +75,7 @@
         <div class="panel" id="panel_1">
             <p class="line">Detalhe 1</p>
             @*<div class="line"></div>*@
-            
+
         </div>
 
         <div class="panel" id="panel_2">

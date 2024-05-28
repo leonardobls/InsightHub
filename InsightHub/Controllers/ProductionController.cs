@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace InsightHub.Controllers;
 
 [Route("/producoes")]
-public class ProductionsController : Controller
+public class ProductionController : Controller
 {
 
     [Route("")]

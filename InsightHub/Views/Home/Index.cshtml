@@ -3,6 +3,97 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <section class="home">
-    <h1>Home Page</h1>
+
+    @* <div class="home__introduction">
+
+    </div> *@
+
+    <div class="home__search_bar mb-4">
+        <form action="">
+            <div class="row">
+                <p class="text text--white text--fw600 text--20 text--toupper">Busca rápida</p>
+                <label class="input-wrapper" for="fast_search">
+                    <input id="fast_search" type="text" name="fast_search"
+                        placeholder="Escreva o que você deseja buscar">
+                    <span class="error"></span>
+                </label>
+            </div>
+            <button type="submit" class="btn-submit">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#e8eaed">
+                    <path
+                        d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <div class="home__advanced_search mb-4">
+        <form action="">
+            <p class="title text text--black text--fw600 text--20 text--toupper">Busca avançada</p>
+            <div class="row" id="filters">
+                <label for="select_1">
+                    <p class="text text--15 text--black text--fw300 mb-1">Filtro um:</p>
+                    <select id="select_1">
+                        <option value="0" disabled="true" selected="true">Selecione uma opção</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
+
+
+                <label for="select_2">
+                    <p class="text text--15 text--black text--fw300 mb-1">Filtro dois:</p>
+                    <select id="select_2">
+                        <option value="0" disabled="true" selected="true">Selecione uma opção</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
+
+                <label for="select_3">
+                    <p class="text text--15 text--black text--fw300 mb-1">Filtro três:</p>
+                    <select id="select_3">
+                        <option value="0" disabled="true" selected="true">Selecione uma opção</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
+
+                <label for="select_4">
+                    <div class="text text--15 text--black text--fw300 mb-1">Filtro quatro:</div>
+                    <select id="select_4">
+                        <option value="0" disabled="true" selected="true">Selecione uma opção</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </label>
+
+                <button type="submit" class="search_button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#e8eaed">
+                        <path
+                            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="home__detail_panels">
+        <div class="panel" id="panel_1">
+            <p class="text text--15 text--black text--fw500">Detalhe 1</p>
+        </div>
+
+        <div class="panel" id="panel_2">
+            <p class="text text--15 text--black text--fw500">Detalhe 2</p>
+        </div>
+
+        <div class="panel" id="panel_3">
+            <p class="text text--15 text--black text--fw500">Detalhe 3</p>
+        </div>
+    </div>
+
 </section>
