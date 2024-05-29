@@ -31,7 +31,7 @@
             <div class="list">
                 @for (int i = 0; i < 10; i++)
                 {
-                    <div class="item">
+                    <div class="item js-open-modal">
                         <h2 class="text text--black text--20 text--fw600 mb-2">Título da producão</h2>
                         <p class="text text--black text--15 text--fw400 mb-2">Lorem ipsum dolor sit, amet consectetur
                             adipisicing
@@ -53,3 +53,6 @@
         </div>
     </div>
 </section>
+
+
+@Html.Partial("/Views/Components/ProductionModal.cshtml")
