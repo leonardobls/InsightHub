@@ -1,0 +1,30 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Productions List Page";
+}
+
+<section class="favorite-productions">
+    <h1 class="text text--20 text--white text--fw600 mb-5">Produções Favoritas</h1>
+    <div class="list">
+        @for (int i = 0; i < 10; i++)
+        {
+            <div class="item">
+                <h2 class="text text--black text--20 text--fw600 mb-2">Título da producão</h2>
+                <p class="text text--black text--15 text--fw400 mb-2">Lorem ipsum dolor sit, amet consectetur
+                    adipisicing
+                    elit.
+                    Aperiam
+                    libero incidunt error fugit quidem
+                    eaque deleniti, consectetur atque illum alias consequatur sed ut, voluptatem cumque ea beatae
+                    autem
+                    laborum enim.
+                </p>
+                <div class="members">
+                    <div class="member text text--black text--fw500">Leonardo Bitencourt</div>
+                    <div class="member text text--black text--fw500">Eduardo Pereira</div>
+                </div>
+                <div class="complement text text--black text--fw500">Producao em Ingles</div>
+            </div>
+        }
+    </div>
+</section>

@@ -13,10 +13,16 @@ public class ProductionController : Controller
         return View();
     }
 
-    [Route("{slug}")]
+    [Route("producao/{slug}")]
     public IActionResult Detail(String slug)
     {
         ViewBag.TituloDetalhe = slug;
+        return View();
+    }
+
+    [Route("favoritos")]
+    public IActionResult Favorites()
+    {
         return View();
     }
 }
