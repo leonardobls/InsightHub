@@ -1,0 +1,55 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Productions List Page";
+}
+
+<section class="productions">
+    <h1 class="text text--20 text--white text--fw600 mb-5">Sua busca retornou 21 resultados:</h1>
+    <div class="productions__wrapper">
+        <div class="left">
+            <h3 class="text text--white text--13 mb-2">Filtros</h3>
+            <div class="cards">
+                <div class="card">
+                    <div>Filtro um</div>
+                </div>
+                <div class="card">
+                    <div>Filtro um</div>
+                </div>
+                <div class="card">
+                    <div>Filtro um</div>
+                </div>
+                <div class="card">
+                    <div>Filtro um</div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top-row mb-2">
+                <div class="order text text--white text--13">Ordenar por: <strong>Mais Relevante</strong></div>
+                <div class="result text text--white text--13">resultado: 1 de 10.000 (página 1 de 5)</div>
+            </div>
+            <div class="list">
+                @for (int i = 0; i < 10; i++)
+                {
+                    <a href="producoes/qualquer-coisa" class="item js-open-modal">
+                        <h2 class="text text--black text--20 text--fw600 mb-2">Título da producão</h2>
+                        <p class="text text--black text--15 text--fw400 mb-2">Lorem ipsum dolor sit, amet consectetur
+                            adipisicing
+                            elit.
+                            Aperiam
+                            libero incidunt error fugit quidem
+                            eaque deleniti, consectetur atque illum alias consequatur sed ut, voluptatem cumque ea beatae
+                            autem
+                            laborum enim.
+                        </p>
+                        <div class="members">
+                            <div class="member text text--black text--fw500">Leonardo Bitencourt</div>
+                            <div class="member text text--black text--fw500">Eduardo Pereira</div>
+                        </div>
+                        <div class="complement text text--black text--fw500">Producao em Ingles</div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</section>

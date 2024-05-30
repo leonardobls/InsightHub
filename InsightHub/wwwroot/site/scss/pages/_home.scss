@@ -1,0 +1,121 @@
+.home {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    height: fit-content;
+    padding-top: 8rem;
+
+    &__search_bar {
+        padding-top: 3rem;
+        width: 100%;
+        height: fit-content;
+
+        form {
+            width: 100%;
+            height: fit-content;
+            padding: 0 8rem;
+            position: relative;
+
+            .row {
+                width: 100%;
+                height: fit-content;
+
+                .text {
+                    margin-bottom: 1.5rem;
+                }
+
+                .input-wrapper {
+                    width: 100%;
+                    height: 6rem;
+                    border: 2px solid $secondary-color;
+                    border-radius: 20rem;
+
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        padding: 2rem;
+                        color: #FFF;
+
+                    }
+                }
+            }
+
+            .btn-submit {
+                position: absolute;
+                right: 12rem;
+                bottom: 0;
+                height: 6rem;
+
+                svg {
+                    path {
+                        fill: $secondary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    &__advanced_search {
+        width: 100%;
+        height: fit-content;
+        padding: 0 8rem;
+
+        form {
+            border-radius: 1.5rem;
+            background: #FFFFFF;
+            padding: 3rem 5rem;
+
+            .title {
+                margin-bottom: 1.5rem;
+            }
+
+            .row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                label {
+                    width: fit-content;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                select {
+                    display: none;
+                }
+            }
+
+            .search_button {
+                border-radius: 50%;
+                background: #000000;
+                padding: 1rem;
+                width: fit-content;
+                height: fit-content;
+
+                svg {
+                    path {
+                        fill: #FFFFFF;
+                    }
+                }
+            }
+        }
+    }
+
+    &__detail_panels {
+        width: 100%;
+        height: fit-content;
+        padding: 0 8rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        .panel {
+            background-color: #FFFFFF;
+            border-radius: 1.5rem;
+            height: 45vh;
+            padding: 2rem;
+        }
+    }
+}

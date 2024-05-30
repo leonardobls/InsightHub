@@ -1,0 +1,51 @@
+$secondary-color: #B2B2B2;
+
+.button {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    cursor: pointer;
+    transition: .3s all ease;
+
+    &--black {
+        background: #000000;
+        border: 2px solid #000000;
+    }
+
+    &:hover {
+        background: transparent;
+        transition: .3s all ease;
+
+        .text {
+            color: #000000 !important;
+        }
+
+        svg {
+            path {
+                fill: #000000 !important;
+            }
+        }
+    }
+}
+
+.mb-1 {
+    margin-bottom: 1rem !important;
+}
+
+.mb-2 {
+    margin-bottom: 2rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 3rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 4rem !important;
+}
+
+.mb-5 {
+    margin-bottom: 5rem !important;
+}
