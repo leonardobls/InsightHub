@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html,
 body,
 div,
@@ -228,6 +229,10 @@ body {
   background: radial-gradient(circle at top left, rgb(0, 71, 153) 26%, rgb(0, 197, 197) 100%, rgb(0, 49, 139) 100%), rgb(185, 185, 185);
 }
 
+.admin {
+  padding-left: 30rem;
+}
+
 .text {
   font-family: "Inter", sans-serif;
   line-height: 100%;
@@ -271,32 +276,11 @@ body {
 .text--black {
   color: #000000;
 }
+.text--center {
+  text-align: center;
+}
 .text--toupper {
   text-transform: uppercase;
-}
-
-.button {
-  padding: 1.5rem;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  cursor: pointer;
-  transition: 0.3s all ease;
-}
-.button--black {
-  background: #000000;
-  border: 2px solid #000000;
-}
-.button:hover {
-  background: transparent;
-  transition: 0.3s all ease;
-}
-.button:hover .text {
-  color: #000000 !important;
-}
-.button:hover svg path {
-  fill: #000000 !important;
 }
 
 .mb-1 {
@@ -319,6 +303,263 @@ body {
   margin-bottom: 5rem !important;
 }
 
+.button {
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.6rem;
+  color: #FFF !important;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+}
+.button--add {
+  background: green;
+}
+.button--back {
+  background: black;
+}
+.button--edit {
+  background: #cc9d02;
+}
+.button--delete {
+  background: #ba0202;
+}
+
+.header {
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.header .left {
+  flex: 1;
+}
+.header .left .breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  height: 1.5rem;
+  margin: 5rem 0 3rem;
+}
+.header .left .breadcrumbs a {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+.header .left .breadcrumbs a:not(:last-child):after {
+  content: ">";
+  position: absolute;
+  right: -2rem;
+  height: 100%;
+}
+.header .left .title {
+  font-size: 3rem;
+  color: #FFF;
+  font-weight: 600;
+}
+.header .right {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: start;
+}
+
+.table {
+  width: 100%;
+}
+.table thead {
+  width: 100%;
+}
+.table thead th {
+  width: fit-content;
+  text-align: start;
+  vertical-align: middle;
+  color: #FFF;
+  font-weight: 700;
+  padding: 0 1rem 3rem;
+}
+.table thead th:first-child {
+  width: 3rem;
+  padding-left: 3rem;
+}
+.table thead th:last-child {
+  padding-right: 3rem;
+  text-align: center;
+}
+.table tbody {
+  width: 100%;
+}
+.table tbody tr {
+  border-radius: 1rem;
+  position: relative;
+}
+.table tbody tr:after {
+  content: "";
+  width: 100%;
+  height: calc(100% - 1rem);
+  background: #FFF;
+  position: absolute;
+  top: 0;
+  border-radius: 1rem;
+  left: 0;
+  z-index: -1;
+}
+.table tbody tr td {
+  height: 8rem;
+  width: fit-content;
+  vertical-align: middle;
+  padding: 2rem 1rem 3rem;
+}
+.table tbody tr td:first-child {
+  padding-left: 3rem;
+}
+.table tbody tr td:last-child {
+  padding: 0;
+  padding-right: 3rem;
+}
+.table tbody tr td:last-child .buttons-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
+}
+.table tbody tr td:last-child .buttons-wrapper .button {
+  height: fit-content;
+  padding: 1rem 1rem;
+  gap: 1rem;
+  font-size: 1rem;
+  transform: translateY(-0.5rem);
+}
+.table tbody tr td:last-child .buttons-wrapper .button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.pagination {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.pagination li {
+  display: inline;
+}
+
+.pagination li a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 10px;
+  color: #000;
+}
+
+/* Active and Hoverable Pagination */
+.pagination li a {
+  border-radius: 5px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+
+.pagination li a.active {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.pagination li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+/* border-pagination */
+.b-pagination-outer {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+}
+
+#border-pagination {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+#border-pagination li {
+  display: inline;
+}
+
+#border-pagination li a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  float: left;
+}
+
+#border-pagination li a {
+  -webkit-transition: background-color 0.4s;
+  transition: background-color 0.4s;
+}
+
+#border-pagination li a.active {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+#border-pagination li a:hover:not(.active) {
+  background: #ddd;
+}
+
+.menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 30rem;
+  height: 100vh;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 3rem;
+}
+.menu .logo {
+  display: block;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background: #000;
+  overflow: hidden;
+  margin-bottom: 10rem;
+}
+.menu .logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.menu .links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5rem;
+  width: 100%;
+}
+.menu .links .link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .login {
   width: 100%;
   height: 100vh;
@@ -329,6 +570,9 @@ body {
   width: 60%;
   height: 100%;
   background: radial-gradient(circle at top left, rgb(0, 71, 153) 26%, rgb(0, 197, 197) 100%, rgb(0, 49, 139) 100%), rgb(185, 185, 185);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .login__right {
   height: 100%;
@@ -399,6 +643,118 @@ body {
   border-radius: 10px;
   padding: 10px 30px;
   color: #FFF;
+}
+
+.dashboard {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5rem;
+}
+
+.collections {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.collections-edit .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.collections-edit .content {
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  /* 40px: para a 1° linha(header) e 1fr para que a 2°(main) seja flexivel(use todo o conteúdo disponivel) */
+  gap: 24px;
+  padding: 32px;
+  background-color: #fff;
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.16);
+  border-radius: 16px;
+  width: fit-content;
+}
+.collections-edit header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  color: #333;
+}
+.collections-edit header i {
+  padding: 16px;
+  border-radius: 50%;
+  color: #666;
+}
+.collections-edit header i:hover {
+  background-color: #ECE0FD;
+}
+.collections-edit .main-months {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.collections-edit .main-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.collections-edit .main-months > div {
+  width: 82px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  cursor: pointer;
+  transition: all 300ms;
+}
+.collections-edit .main-days > div {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  cursor: pointer;
+  transition: all 300ms;
+}
+.collections-edit main > div:hover {
+  background-color: #ECE0FD;
+  border-radius: 8px;
+}
+.collections-edit main > div.active {
+  background: #6200EE;
+  border-radius: 8px;
+  font-weight: 700;
+  color: white;
+  position: relative;
+}
+.collections-edit main > div.active::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 6px;
+}
+
+.productions {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.researchers {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHub.Controllers;
 
-[Route("/")]
-public class HomeController : Controller
+[Route("/gerenciador")]
+public class AdminDashboardController : Controller
 {
+
     public IActionResult Index()
     {
         return View();

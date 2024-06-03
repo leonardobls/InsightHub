@@ -13,7 +13,10 @@
 
 <body>
 
-    @RenderBody()
+    <div class="admin">
+        <partial name="/Views/Admin/Components/Menu.cshtml" />
+        @RenderBody()
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

@@ -8,6 +8,9 @@
         width: 60%;
         height: 100%;
         background: radial-gradient(circle at top left, rgb(0, 71, 153) 26%, rgb(0, 197, 197) 100%, rgb(0, 49, 139) 100%), rgb(185, 185, 185);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     &__right {

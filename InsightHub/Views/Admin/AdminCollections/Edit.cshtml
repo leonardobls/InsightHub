@@ -1,0 +1,78 @@
+@{
+    ViewData["Title"] = "Admin Arrecadações Listagem Page";
+    Layout = "_AdminLayout";
+}
+
+@section scripts {
+    <script src="~/admin/js/main.js" asp-append-version="true"></script>
+}
+
+<div class="collections-edit">
+    <div class="header">
+        <div class="left">
+            <div class="button button--back">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#e8eaed">
+                    <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+                </svg>
+                Voltar
+            </div>
+            <div class="breadcrumbs">
+                <a href="">Início</a>
+                <a href="">Listagem Arrecadações</a>
+                <a href="">Adicionar</a>
+            </div>
+            <div class="title">Adicionar Nova Arrecadação</div>
+        </div>
+    </div>
+    <div class="form">
+        <form action="">
+            <div class="row">
+                <p>Nome do Fornecedor</p>
+                <label for="name">
+                    <input id="name" type="text">
+                </label>
+            </div>
+            <div class="row">
+                <p>Descrição</p>
+                <label for="description">
+                    <input id="description" type="text">
+                </label>
+            </div>
+            <div class="row">
+                <p>Valor</p>
+                <label for="value">
+                    <input id="value" type="text">
+                </label>
+            </div>
+            <div class="row">
+                <p>Pesquisa Vinculada</p>
+                <label for="value">
+                    <input id="value" type="text">
+                </label>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div id="app" class="months-box content">
+                        <header>
+                            <i class="ph-bold ph-caret-left"></i>
+                            <span></span>
+                            <i class="ph-bold ph-caret-right"></i>
+                        </header>
+                        <main class="main-months"></main>
+                    </div>
+
+                    <div id="dayMonth" class="days-month-box content">
+                        <header>
+                            <i class="ph-bold ph-caret-left"></i>
+                            <span></span>
+                            <i class="ph-bold ph-caret-right"></i>
+                        </header>
+                        <main class="main-days"></main>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHub.Controllers;
 
+[Route("/gerenciador/login")]
 public class LoginController : Controller
 {
 
@@ -10,10 +11,4 @@ public class LoginController : Controller
     {
         return View();
     }
-
-    public IActionResult Home()
-    {
-        return View();
-    }
-
 }

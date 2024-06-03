@@ -12,13 +12,12 @@
 </head>
 
 <body>
-    @Html.Partial("/Views/Site/Components/Header.cshtml")
+    <partial name="/Views/Site/Components/Header.cshtml" />
     @RenderBody()
-    @Html.Partial("/Views/Site/Components/Footer.cshtml")
+    <partial name="/Views/Site/Components/Footer.cshtml" />
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/productions-detail.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
