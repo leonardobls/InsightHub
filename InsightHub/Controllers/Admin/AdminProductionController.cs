@@ -12,8 +12,14 @@ public class AdminProductionController : Controller
         return View();
     }
 
-    [Route("/gerenciador/producoes/{id}")]
+    [Route("/gerenciador/producoes/edit/{id}")]
     public IActionResult Edit()
+    {
+        return View();
+    }
+
+    [Route("/gerenciador/producoes/insert")]
+    public IActionResult Insert()
     {
         return View();
     }

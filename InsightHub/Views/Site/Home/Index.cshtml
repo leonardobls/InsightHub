@@ -11,7 +11,7 @@
     </div> *@
 
     <div class="home__search_bar mb-4">
-        <form action="">
+        <form action="/producoes">
             <div class="row">
                 <p class="text text--white text--fw600 text--20 text--toupper">Busca rápida</p>
                 <label class="input-wrapper" for="fast_search">
@@ -31,15 +31,46 @@
     </div>
 
     <div class="home__advanced_search mb-4">
-        <form action="/producoes">
+        <script>
+            function redirect(event) {
+                event.preventDefault(); // Evita que o formulário seja enviado
+
+                var inputElemento = document.getElementById("select_1");
+                if (!inputElemento) {
+                    console.error('Elemento de input não encontrado.');
+                    return;
+                }
+
+                var inputValor = inputElemento.value;
+                if (!inputValor) {
+                    console.error('Valor do input está vazio.');
+                    return;
+                }
+
+                console.log('Valor do elemento: ' + inputElemento);
+                console.log('Valor do input: ' + inputValor);
+                
+                if (inputValor === 'Pesquisa') {
+                    window.location.href = '/producoes';
+
+                } else if (inputValor === 'Pesquisador') {
+                    window.location.href = '/pesquisador';
+
+                } else {
+                    window.location.href = '/';
+                }
+            }
+        </script>
+        @* <form action="/producoes"> *@
+        <form onsubmit="redirect(event)">
             <p class="title text text--black text--fw600 text--20 text--toupper">Busca avançada</p>
             <div class="row" id="filters">
                 <label for="select_1">
-                    <p class="text text--15 text--black text--fw300 mb-1">Filtro um:</p>
+                    <p class="text text--15 text--black text--fw300 mb-1">Tipo da busca:</p>
                     <select id="select_1">
                         <option value="0" disabled="true" selected="true">Selecione uma opção</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <option value="Pesquisa">Pesquisa</option>
+                        <option value="Pesquisador">Pesquisador</option>
                     </select>
                 </label>
 

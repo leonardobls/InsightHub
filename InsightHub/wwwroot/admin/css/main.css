@@ -644,6 +644,9 @@ body {
   padding: 10px 30px;
   color: #FFF;
 }
+.login__right #return {
+  margin-top: 10px;
+}
 
 .dashboard {
   width: 100%;
