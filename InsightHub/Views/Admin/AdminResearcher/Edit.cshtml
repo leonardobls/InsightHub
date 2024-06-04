@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Edição de Projeto";
+    ViewData["Title"] = "Edição de Pesquisador";
     Layout = "_LayoutUnscoped";
 }
 <div class="insert-form">
@@ -27,7 +27,7 @@
             display: flex;
             margin-top: 10px;
         }
-        input[type="text"], input[type="date"] {
+        input[type="text"], input[type="date"], input[type="email"] {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
@@ -44,15 +44,6 @@
         button:hover {
             background-color: #45a049;
         }
-        select {
-            width: 100%;
-            height: 80px;
-            border-radius: 10px;
-            top: 14px;
-            right: 10px;
-            background-color: transparent;
-            border: 2px black solid;
-        }
 
     </style>
     <script>
@@ -63,8 +54,8 @@
             var form = event.target;
             if (form.checkValidity()) {
                 // Se o formulário for válido, redirecionar para uma página de sucesso
-                alert('Projeto editado com sucesso!');
-                window.location.href = '/gerenciador/producoes'; // Descomente e ajuste conforme necessário
+                alert('Pesquisador editado com sucesso!');
+                window.location.href = '/gerenciador/pesquisadores'; // Descomente e ajuste conforme necessário
             } else {
                 // Caso contrário, exibir as mensagens de validação nativas
                 form.reportValidity();
@@ -78,36 +69,14 @@
     </script>
 
 
-        <h1>Edição de Projeto</h1>
+        <h1>Edição de Pesquisador</h1>
         <br>
         <form>
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 
-            <label for="dataInicio">Data de Início:</label>
-            <input type="date" id="dataInicio" name="dataInicio" required>
-
-            <label for="dataFim">Data de Fim:</label>
-            <input type="date" id="dataFim" name="dataFim" class="data" required>
-
-            <label for="area">Área do projeto:</label>
-                <select id="area" name="areas[]" multiple>
-                    <option value="0">Área 0</option>
-                    <option value="1">Área 1</option>
-                    <option value="2">Área 2</option>
-                    <option value="3">Área 3</option>
-                    <option value="4">Área 4</option>
-                    <option value="5">Área 5</option>
-                </select>
-
-            <label for="area">Subarea do projeto:</label>
-                <select id="area" name="areas[]" multiple>
-                    <option value="0">Subarea 0</option>
-                    <option value="1">Subarea 1</option>
-                    <option value="2">Subarea 2</option>
-                    <option value="3">Subarea 3</option>
-                    <option value="4">Subarea 4</option>
-                </select>
+            <label for="dataInicio">Email:</label>
+            <input type="email" id="dataInicio" name="dataInicio">
 
             <button type="submit" class="button button--add">Cadastrar</button>
         </form>

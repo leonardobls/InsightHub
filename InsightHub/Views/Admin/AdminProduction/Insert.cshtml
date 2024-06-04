@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Edição de Projeto";
+    ViewData["Title"] = "Cadastro de Projeto";
     Layout = "_LayoutUnscoped";
 }
 <div class="insert-form">
@@ -63,7 +63,7 @@
             var form = event.target;
             if (form.checkValidity()) {
                 // Se o formulário for válido, redirecionar para uma página de sucesso
-                alert('Projeto editado com sucesso!');
+                alert('Projeto cadastrado com sucesso!');
                 window.location.href = '/gerenciador/producoes'; // Descomente e ajuste conforme necessário
             } else {
                 // Caso contrário, exibir as mensagens de validação nativas
@@ -78,7 +78,7 @@
     </script>
 
 
-        <h1>Edição de Projeto</h1>
+        <h1>Cadastro de Projeto</h1>
         <br>
         <form>
             <label for="nome">Nome:</label>

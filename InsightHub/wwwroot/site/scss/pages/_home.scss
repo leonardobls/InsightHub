@@ -82,7 +82,14 @@
                 }
 
                 select {
-                    display: none;
+                    //display: none;
+                    width: fit-content;
+                    border-radius: 5%;
+                    top: 14px;
+                    right: 10px;
+                    border: 6px solid transparent;
+                    border-color: #000 #2a2222 transparent transparent;
+                    background-color: #74d3d3;
                 }
             }
 
@@ -92,6 +99,7 @@
                 padding: 1rem;
                 width: fit-content;
                 height: fit-content;
+                cursor: pointer;
 
                 svg {
                     path {

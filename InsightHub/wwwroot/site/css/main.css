@@ -283,6 +283,7 @@ body {
   gap: 2rem;
   cursor: pointer;
   transition: 0.3s all ease;
+  margin-left: 10px;
 }
 .button--black {
   background: #000000;
@@ -345,6 +346,9 @@ body {
   object-fit: contain;
 }
 .header__right .admin-access {
+  display: flex;
+}
+.header .header__right {
   display: flex;
 }
 
@@ -430,7 +434,13 @@ body {
   flex-direction: column;
 }
 .home__advanced_search form .row select {
-  display: none;
+  width: fit-content;
+  border-radius: 5%;
+  top: 14px;
+  right: 10px;
+  border: 6px solid transparent;
+  border-color: #000 #2a2222 transparent transparent;
+  background-color: #74d3d3;
 }
 .home__advanced_search form .search_button {
   border-radius: 50%;
@@ -438,6 +448,7 @@ body {
   padding: 1rem;
   width: fit-content;
   height: fit-content;
+  cursor: pointer;
 }
 .home__advanced_search form .search_button svg path {
   fill: #FFFFFF;
