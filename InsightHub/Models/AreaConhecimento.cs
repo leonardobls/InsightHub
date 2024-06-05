@@ -9,5 +9,8 @@ namespace InsightHub.Models
 
         [Required]
         public string? Nome { get; set; }
+
+        [Required]
+        public string? Numero { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using InsightHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsightHub.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240604232139_CreateNewColumns")]
+    partial class CreateNewColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,9 +108,6 @@ namespace InsightHub.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AreaId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -188,6 +188,31 @@ namespace InsightHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SubareaConhecimento");
+                });
+
+            modelBuilder.Entity("InsightHub.Models.SubsubAreaConhecimento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("SubareaKey")
+                        .IsRequired()
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubsubAreaConhecimento");
                 });
 #pragma warning restore 612, 618
         }

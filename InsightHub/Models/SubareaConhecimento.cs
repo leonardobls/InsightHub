@@ -9,5 +9,11 @@ namespace InsightHub.Models
 
         [Required]
         public string? Nome { get; set; }
+
+        [Required]
+        public string? Numero { get; set; }
+
+        [Required]
+        public int? AreaKey { get; set; }
     }
 }

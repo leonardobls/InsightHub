@@ -1,6 +1,9 @@
+using InsightHub.Data;
 using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews(options =>

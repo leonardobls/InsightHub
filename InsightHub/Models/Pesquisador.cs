@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InsightHub.Models
 {
@@ -7,10 +8,14 @@ namespace InsightHub.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public string? Nome { get; set; }
 
-        [Required]
         public string? Email { get; set; }
+
+        [ForeignKey("AreaId")]
+        public int AreaId { get; set; }
+
+        [NotMapped]
+        public virtual AreaConhecimento AreaConhecimento { get; set; }
     }
 }

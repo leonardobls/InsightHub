@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using InsightHub.Data;
+using InsightHub.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHub.Controllers;
@@ -22,5 +24,17 @@ public class AdminResearcherController : Controller
     public IActionResult Insert()
     {
         return View();
+    }
+
+    [HttpPost]
+    [Route("/gerenciador/add-form")]
+    public IActionResult Add([FromServices] AppDbContext context,
+                [FromForm] Pesquisador model)
+    {
+
+        context.Pesquisador.Add(model);
+        context.SaveChanges();
+
+        return Ok();
     }
 }
