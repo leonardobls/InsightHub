@@ -2,6 +2,7 @@ using System.Diagnostics;
 using InsightHub.Data;
 using InsightHub.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsightHub.Controllers;
 
@@ -15,19 +16,31 @@ public class AdminResearcherController : Controller
     }
 
     [Route("/gerenciador/pesquisadores/edit/{id}")]
-    public IActionResult Edit()
+    public async Task<IActionResult> Edit([FromServices] AppDbContext context)
     {
-        return View();
+        var subareas = await context.SubareaConhecimento.Select(a => new SubareaConhecimento
+            {
+                Id = a.Id,
+                Nome = a.Nome,
+                Numero = a.Numero
+            }).ToListAsync();
+        return View(subareas);
     }
 
     [Route("/gerenciador/pesquisadores/insert")]
-    public IActionResult Insert()
+    public async Task<IActionResult> Insert([FromServices] AppDbContext context)
     {
-        return View();
+        var subareas = await context.SubareaConhecimento.Select(a => new SubareaConhecimento
+            {
+                Id = a.Id,
+                Nome = a.Nome,
+                Numero = a.Numero
+            }).ToListAsync();
+        return View(subareas);
     }
 
     [HttpPost]
-    [Route("/gerenciador/add-form")]
+    [Route("/gerenciador/pesquisadores/add-form")]
     public IActionResult Add([FromServices] AppDbContext context,
                 [FromForm] Pesquisador model)
     {
@@ -35,6 +48,7 @@ public class AdminResearcherController : Controller
         context.Pesquisador.Add(model);
         context.SaveChanges();
 
-        return Ok();
-    }
+        //return Ok();
+        return Redirect("/gerenciador/pesquisadores");
+    }    
 }

@@ -11,7 +11,7 @@
     </div> *@
 
     <div class="home__search_bar mb-4">
-        <form action="/producoes">
+        <form action="/projetos">
             <div class="row">
                 <p class="text text--white text--fw600 text--20 text--toupper">Busca rápida</p>
                 <label class="input-wrapper" for="fast_search">
@@ -51,7 +51,7 @@
                 console.log('Valor do input: ' + inputValor);
                 
                 if (inputValor === 'Pesquisa') {
-                    window.location.href = '/producoes';
+                    window.location.href = '/projetos';
 
                 } else if (inputValor === 'Pesquisador') {
                     window.location.href = '/pesquisador';
@@ -61,7 +61,7 @@
                 }
             }
         </script>
-        @* <form action="/producoes"> *@
+        @* <form action="/projetos"> *@
         <form onsubmit="redirect(event)">
             <p class="title text text--black text--fw600 text--20 text--toupper">Busca avançada</p>
             <div class="row" id="filters">

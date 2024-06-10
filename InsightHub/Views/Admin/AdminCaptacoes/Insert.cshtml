@@ -1,3 +1,6 @@
+@using InsightHub.Models
+@model IEnumerable<Projeto>
+
 @{
     ViewData["Title"] = "Cadastro de Captações de Recursos";
     Layout = "_LayoutUnscoped";
@@ -55,51 +58,38 @@
         }
 
     </style>
-    <script>
-        function redirecionar(event) {
-            event.preventDefault(); // Evita o envio padrão do formulário
 
-            // Validar o formulário
-            var form = event.target;
-            if (form.checkValidity()) {
-                // Se o formulário for válido, redirecionar para uma página de sucesso
-                alert('Captações de Recursos cadastrado com sucesso!');
-                window.location.href = '/gerenciador/captacoes'; // Descomente e ajuste conforme necessário
-            } else {
-                // Caso contrário, exibir as mensagens de validação nativas
-                form.reportValidity();
+        <script>
+            function mostrarSelecao() {
+                // Obter o elemento select
+                var select = document.getElementById("tipo");
+                // Obter o valor selecionado
+                var valorSelecionado = select.value;
+                // Mostrar o valor selecionado em um alerta
+                alert("O valor selecionado é: " + valorSelecionado);
             }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var form = document.querySelector('form');
-            form.addEventListener('submit', redirecionar);
-        });
-    </script>
-
+        </script>
 
         <h1>Cadastro de Captações de Recursos</h1>
         <br>
-        <form>
+        <form action="/gerenciador/captacoes/add-form" enctype="multipart/form-data" method="post">
             <label for="projeto_vinculado">Área do projeto:</label>
                 <select id="projeto_vinculado">
-                    <option value="0">Projeto 0</option>
-                    <option value="1">Projeto 1</option>
-                    <option value="2">Projeto 2</option>
-                    <option value="3">Projeto 3</option>
-                    <option value="4">Projeto 4</option>
-                    <option value="5">Projeto 5</option>
+                    @foreach(var captacao in Model){
+                        <option value="@captacao.Id">@captacao.Nome</option>
+                    }
                 </select>
 
             <label for="valor">Valor:</label>
             <input type="text" id="valor" name="valor" required>
 
             <label for="tipo">Tipo:</label>
-                <select id="tipo">
-                    <option value="0">Financiamento</option>
-                    <option value="1">Bolsas de pesquisa</option>
-                    <option value="2">Mão de obra</option>
+                <select id="tipo" name="tipo">
+                    <option value="Financiamento">Financiamento</option>
+                    <option value="Bolsas de pesquisa">Bolsas de pesquisa</option>
+                    <option value="Mão de obra">Mão de obra</option>
                 </select>
+
 
             <label for="descricao">Descriçao:</label>
             <input type="text" id="descricao" name="descricao">

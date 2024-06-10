@@ -1,3 +1,9 @@
+@using InsightHub.Models
+@{
+    var areas = ViewBag.Areas as List<AreaConhecimento>;
+    var subareas = ViewBag.Subareas as List<SubareaConhecimento>;
+}
+
 @{
     ViewData["Title"] = "Edição de Projeto";
     Layout = "_LayoutUnscoped";
@@ -64,7 +70,7 @@
             if (form.checkValidity()) {
                 // Se o formulário for válido, redirecionar para uma página de sucesso
                 alert('Projeto editado com sucesso!');
-                window.location.href = '/gerenciador/producoes'; // Descomente e ajuste conforme necessário
+                window.location.href = '/gerenciador/projetos'; // Descomente e ajuste conforme necessário
             } else {
                 // Caso contrário, exibir as mensagens de validação nativas
                 form.reportValidity();
@@ -80,7 +86,7 @@
 
         <h1>Edição de Projeto</h1>
         <br>
-        <form>
+        <form action="/gerenciador/add-projeto" enctype="multipart/form-data" method="post">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 
@@ -92,21 +98,16 @@
 
             <label for="area">Área do projeto:</label>
                 <select id="area" name="areas[]" multiple>
-                    <option value="0">Área 0</option>
-                    <option value="1">Área 1</option>
-                    <option value="2">Área 2</option>
-                    <option value="3">Área 3</option>
-                    <option value="4">Área 4</option>
-                    <option value="5">Área 5</option>
+                    @foreach (var item in areas){
+                        <option value="@item.Id">@item.Nome</option>
+                    }
                 </select>
 
-            <label for="area">Subarea do projeto:</label>
-                <select id="area" name="areas[]" multiple>
-                    <option value="0">Subarea 0</option>
-                    <option value="1">Subarea 1</option>
-                    <option value="2">Subarea 2</option>
-                    <option value="3">Subarea 3</option>
-                    <option value="4">Subarea 4</option>
+            <label for="subarea">Subarea do projeto:</label>
+                <select id="subarea" name="subareas[]" multiple>
+                    @foreach (var item in subareas){
+                        <option value="@item.Id">@item.Nome</option>
+                    }
                 </select>
 
             <button type="submit" class="button button--add">Cadastrar</button>

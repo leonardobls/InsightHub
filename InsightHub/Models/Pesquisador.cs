@@ -16,6 +16,6 @@ namespace InsightHub.Models
         public int AreaId { get; set; }
 
         [NotMapped]
-        public virtual AreaConhecimento AreaConhecimento { get; set; }
+        public virtual AreaConhecimento? AreaConhecimento { get; set; }
     }
 }

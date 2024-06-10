@@ -1,3 +1,6 @@
+@using InsightHub.Models
+@model IEnumerable<SubareaConhecimento>
+
 @{
     ViewData["Title"] = "Cadastro de Pesquisador";
     Layout = "_LayoutUnscoped";
@@ -52,38 +55,34 @@
         button:hover {
             background-color: #45a049;
         }
+
+        select {
+            width: 100%;
+            height: 80px;
+            border-radius: 10px;
+            top: 14px;
+            right: 10px;
+            background-color: transparent;
+            border: 2px black solid;
+        }
     </style>
-    <script>
-        @* function redirecionar(event) {
-            event.preventDefault(); // Evita o envio padrão do formulário
-
-            // Validar o formulário
-            var form = event.target;
-            if (form.checkValidity()) {
-            // Se o formulário for válido, redirecionar para uma página de sucesso
-            alert('Pesquisador cadastrado com sucesso!');
-            window.location.href = '/gerenciador/pesquisadores'; // Descomente e ajuste conforme necessário
-            } else {
-            // Caso contrário, exibir as mensagens de validação nativas
-            form.reportValidity();
-            }
-            }
-
-            document.addEventListener('DOMContentLoaded', function () {
-            var form = document.querySelector('form');
-            form.addEventListener('submit', redirecionar);
-            }); *@
-    </script>
-
 
     <h1>Cadastro de Pesquisador</h1>
     <br>
-    <form action="/gerenciador/add-form" enctype="multipart/form-data" method="post">
+    <form action="/gerenciador/pesquisadores/add-form" enctype="multipart/form-data" method="post">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="Nome" required>
 
         <label for="email">Email:</label>
         <input type="text" id="email" name="Email">
+
+        <label for="areaid">Área de formação:</label>
+                <select id="areaid" name="areas[]" multiple>
+                    @foreach (var area in Model)
+                    {
+                        <option value="@area.Id">@area.Nome</option>
+                    }
+                </select>
 
         <button type="submit" class="button button--add">Cadastrar</button>
     </form>
