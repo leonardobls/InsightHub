@@ -10,13 +10,17 @@ namespace InsightHub.Controllers;
 public class AdminProductionController : Controller
 {
     [Route("/gerenciador/projetos")]
-    public IActionResult List()
+    public async Task<IActionResult> List([FromServices] AppDbContext context)
     {
+
+        var projetos = await context.Projeto.ToListAsync();
+
+        ViewBag.Projetos = projetos;
         return View();
     }
 
-    [Route("/gerenciador/projetos/edit/{id}")]
-    public async Task<IActionResult> Edit([FromServices] AppDbContext context)
+    [Route("/gerenciador/projetos/edit/{Id?}")]
+    public async Task<IActionResult> Edit([FromServices] AppDbContext context, int Id)
     {
         var areas = await context.AreaConhecimento.Select(a => new AreaConhecimento
         {
@@ -30,33 +34,36 @@ public class AdminProductionController : Controller
             Nome = a.Nome,
             Numero = a.Numero
         }).ToListAsync();
-        
+
+
         ViewBag.Areas = areas;
         ViewBag.Subareas = subareas;
+
+        Projeto projeto = null;
+
+        if (Id != 0)
+        {
+            Projeto teste = await context.Projeto
+       .Include(p => (p as Projeto).QualquerCoisa) // Acesso direto à propriedade de navegação
+       .FirstOrDefaultAsync(p => p.Id == Id);
+        }
+
+        ViewBag.Projeto = projeto;
 
         return View();
     }
 
-    [Route("/gerenciador/projetos/insert")]
-    public async Task<IActionResult> Insert([FromServices] AppDbContext context)
+    [Route("/gerenciador/projetos/edit-form/{Id}")]
+    public async Task<IActionResult> Insert([FromServices] AppDbContext context, [FromForm] Projeto model, int Id)
     {
-        var areas = await context.AreaConhecimento.Select(a => new AreaConhecimento
-        {
-            Id = a.Id,
-            Nome = a.Nome,
-            Numero = a.Numero
-        }).ToListAsync();
-        var subareas = await context.SubareaConhecimento.Select(a => new SubareaConhecimento
-        {
-            Id = a.Id,
-            Nome = a.Nome,
-            Numero = a.Numero
-        }).ToListAsync();
-        
-        ViewBag.Areas = areas;
-        ViewBag.Subareas = subareas;
 
-        return View();
+        var projeto = await context.Projeto.Where(a => a.Id == Id).FirstAsync();
+        projeto = model;
+
+        context.Projeto.Update(projeto);
+        context.SaveChanges();
+
+        return Redirect("/gerenciador/projetos");
     }
 
     [HttpPost]
@@ -68,7 +75,6 @@ public class AdminProductionController : Controller
         context.Projeto.Add(model);
         context.SaveChanges();
 
-        //return Ok();
         return Redirect("/gerenciador/projetos");
     }
 }

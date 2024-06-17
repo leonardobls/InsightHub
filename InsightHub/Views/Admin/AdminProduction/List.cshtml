@@ -1,3 +1,5 @@
+@using InsightHub.Models
+
 @{
     ViewData["Title"] = "Admin Projetos Listagem Page";
     Layout = "_AdminLayout";
@@ -30,22 +32,6 @@
         </div>
     </div>
 
-
-    <script>
-        function excluirDiv(div_class) {
-            // Seleciona a div pelo ID
-            var divParaDeletar = document.getElementById(div_class);
-
-            // Verifica se a div existe antes de tentar excluí-la
-            if (divParaDeletar) {
-                // Remove a div
-                divParaDeletar.remove();
-            }else{
-                window.alert("Não foi possível excluir esse valor")
-            }
-        }
-    </script>
-
     <div class="content">
         <table class="table">
             <thead>
@@ -59,17 +45,17 @@
                 </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < 10; i++)
+                @foreach (Projeto projeto in ViewBag.Projetos)
                 {
-                    <tr id="row_@i">
-                        <td>1</td>
-                        <td>Projeto A</td>
-                        <td>01/01/2024</td>
-                        <td>31/12/2024</td>
+                    <tr id="row">
+                        <td>@projeto.Id</td>
+                        <td>@projeto.Nome</td>
+                        <td>@projeto.DataInicio</td>
+                        <td>@projeto.DataFim</td>
                         <td>Pesquisa</td>
                         <td>
                             <div class="buttons-wrapper">
-                                <a href="projetos/edit/@i" class="button button--edit">
+                                <a href="projetos/edit/@projeto.Id" class="button button--edit">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                         width="24px" fill="#e8eaed">
                                         <path
@@ -77,7 +63,7 @@
                                     </svg>
                                     Editar
                                 </a>
-                                <a onclick="excluirDiv('row_@i')" class="button button--delete">
+                                <a class="button button--delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                         width="24px" fill="#e8eaed">
                                         <path

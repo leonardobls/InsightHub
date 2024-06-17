@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InsightHub.Models
 {
@@ -18,5 +19,12 @@ namespace InsightHub.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly DataFim { get; set; }
+
+        [Required]
+        [ForeignKey("SubareaKey")]
+        public int SubareaKey { get; set; }
+
+        [NotMapped]
+        public virtual SubareaConhecimento QualquerCoisa { get; set; }
     }
 }
