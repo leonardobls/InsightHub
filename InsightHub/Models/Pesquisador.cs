@@ -12,10 +12,9 @@ namespace InsightHub.Models
 
         public string? Email { get; set; }
 
-        [ForeignKey("AreaId")]
-        public int AreaId { get; set; }
+        [ForeignKey("SubareaKey")]
+        public int SubareaKey { get; set; }
 
-        [NotMapped]
-        public virtual AreaConhecimento? AreaConhecimento { get; set; }
+        public virtual SubareaConhecimento? Subarea { get; set; }
     }
 }

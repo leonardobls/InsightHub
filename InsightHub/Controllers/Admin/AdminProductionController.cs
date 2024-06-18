@@ -49,10 +49,11 @@ public class AdminProductionController : Controller
         return View();
     }
 
+
     [Route("/gerenciador/projetos/edit-form/{Id?}")]
     public async Task<IActionResult> Insert([FromServices] AppDbContext context, [FromForm] Projeto model, int? Id)
     {
-
+        model.Id = Id;
         if (Id != null)
         {
             var projeto = await context.Projeto.FindAsync(Id);
@@ -72,7 +73,6 @@ public class AdminProductionController : Controller
         }
 
         _ = context.SaveChangesAsync();
-
         return Redirect("/gerenciador/projetos");
     }
 
@@ -86,5 +86,21 @@ public class AdminProductionController : Controller
         context.SaveChanges();
 
         return Redirect("/gerenciador/projetos");
+    }
+
+    [HttpPost]
+    [Route("/gerenciador/projetos/delete")]
+    public IActionResult Delete([FromServices] AppDbContext context, [FromForm] int id)
+    {
+        // Recuperar a instância existente no banco de dados
+        var projeto = context.Projeto.FirstOrDefault(c => c.Id == id);
+
+        if (projeto == null)
+            return NotFound();
+
+        context.Projeto.Remove(projeto);
+        context.SaveChanges();
+
+        return Ok();
     }
 }
