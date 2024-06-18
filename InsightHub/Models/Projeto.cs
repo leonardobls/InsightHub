@@ -21,10 +21,9 @@ namespace InsightHub.Models
         public DateOnly DataFim { get; set; }
 
         [Required]
-        [ForeignKey("SubareaKey")]
-        public int SubareaKey { get; set; }
+        [ForeignKey("SubareaId")]
+        public int SubareaId { get; set; }
 
-        
-        public virtual SubareaConhecimento QualquerCoisa { get; set; }
+        public virtual SubareaConhecimento Subarea { get; set; }
     }
 }

@@ -64,10 +64,10 @@
         }
     </style>
 
-    <h1>Edição de Projeto</h1>
+    <h1>@(ViewBag.Projeto != null ? "Editar" : "Adicionar") Projeto</h1>
     <br>
     <form
-        action="@(ViewBag.Projeto != null ? "/gerenciador/projetos/edit-form/"+ViewBag.Projeto.Id : "/gerenciador/projetos/add-form")"
+        action="@(ViewBag.Projeto != null ? "/gerenciador/projetos/edit-form/"+ViewBag.Projeto.Id : "/gerenciador/projetos/edit-form")"
         enctype="multipart/form-data" method="post">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" value="@(ViewBag.Projeto != null ? ViewBag.Projeto.Nome : null)"
@@ -75,21 +75,20 @@
 
         <label for="dataInicio">Data de Início:</label>
         <input type="date" id="dataInicio" name="dataInicio"
-            value="@(ViewBag.Projeto != null ? ViewBag.Projeto.DataInicio.ToString("yyyy-MM-dd") : null)" required>
+            value="@(ViewBag.Projeto != null && ViewBag.Projeto.DataInicio != null ? DateTime.Parse(ViewBag.Projeto.DataInicio.ToString()).ToString("yyyy-MM-dd") : "")"
+            required>
 
         <label for="dataFim">Data de Fim:</label>
         <input type="date" id="dataFim" name="dataFim" class="data"
-            value="@(ViewBag.Projeto != null ? ViewBag.Projeto.DataFim.ToString("yyyy-MM-dd") : null)" required>
+            value="@(ViewBag.Projeto != null && ViewBag.Projeto.DataFim != null ? DateTime.Parse(ViewBag.Projeto.DataFim.ToString()).ToString("yyyy-MM-dd") : "")"
+            required>
 
         <label for="subarea">Subarea do projeto:</label>
-        <select id="subarea" name="SubareaKey" required>
+        <select id="subarea" name="SubareaId" required>
             @foreach (SubareaConhecimento item in ViewBag.Subareas)
             {
-                if (ViewBag.Projeto != null && ViewBag.Projeto.SubareaKey == item.Id){
-                    <option value="@item.Id" selected>@item.Nome</option>
-                }else{
-                    <option value="@item.Id">@item.Nome</option>
-                }
+                bool isSelected = ViewBag.Projeto != null && ViewBag.Projeto.SubareaId == item.Id ? true : false;
+                <option value="@item.Id" selected="@isSelected">@item.Nome</option>
             }
         </select>
 

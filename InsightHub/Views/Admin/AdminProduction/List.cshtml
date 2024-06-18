@@ -22,7 +22,7 @@
             <div class="title">Lista de Produções</div>
         </div>
         <div class="right">
-            <a class="button button--add" href="/gerenciador/projetos/edit/0">
+            <a class="button button--add" href="/gerenciador/projetos/edit">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                     fill="#e8eaed">
                     <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
@@ -31,32 +31,6 @@
             </a>
         </div>
     </div>
-
-    <script>
-        function deleteProject(id) {
-            if (confirm('Tem certeza que deseja excluir este registro?')) {
-                fetch('/gerenciador/projetos/delete', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: 'id=' + id
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Remover a linha da tabela
-                        document.getElementById('row-' + id).remove();
-                    } else {
-                        alert('Erro ao excluir o registro.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    alert('Erro ao excluir o registro.');
-                });
-            }
-        }
-    </script>
 
     <div class="content">
         <table class="table">
@@ -73,7 +47,7 @@
             <tbody>
                 @foreach (Projeto projeto in ViewBag.Projetos)
                 {
-                    <tr id="row-@projeto.Id">
+                    <tr id="row">
                         <td>@projeto.Id</td>
                         <td>@projeto.Nome</td>
                         <td>@projeto.DataInicio</td>
@@ -89,7 +63,7 @@
                                     </svg>
                                     Editar
                                 </a>
-                                <a onclick="deleteProject(@projeto.Id)" class="button button--delete">
+                                <a href="projetos/delete-form/@projeto.Id" class="button button--delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                         width="24px" fill="#e8eaed">
                                         <path
@@ -106,14 +80,16 @@
     </div>
 
     <ul class="pagination">
-        <li><a class="" href="#">«</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#" class="active">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li><a href="#">7</a></li>
-        <li><a href="#">»</a></li>
+        @for (int i = 1; i <= ViewBag.totalPages; i++)
+        {
+            if (i == ViewBag.currentPage)
+            {
+                <li><a class="active" href="/gerenciador/projetos?page=@i">@i</a></li>
+            }
+            else
+            {
+                <li><a href="/gerenciador/projetos?page=@i">@i</a></li>
+            }
+        }
     </ul>
 </div>
