@@ -12,8 +12,7 @@ public class AdminProductionController : Controller
     [Route("/gerenciador/projetos")]
     public async Task<IActionResult> List([FromServices] AppDbContext context)
     {
-
-        var projetos = await context.Projeto.ToListAsync();
+        var projetos = await context.Projeto.OrderBy(p => p.Nome).ToListAsync();
 
         ViewBag.Projetos = projetos;
         return View();
@@ -43,9 +42,9 @@ public class AdminProductionController : Controller
 
         if (Id != 0)
         {
-            Projeto teste = await context.Projeto
-       .Include(p => (p as Projeto).QualquerCoisa) // Acesso direto à propriedade de navegação
-       .FirstOrDefaultAsync(p => p.Id == Id);
+            projeto = await context.Projeto
+            .Include(p => (p as Projeto).QualquerCoisa) // Acesso direto à propriedade de navegação
+            .FirstOrDefaultAsync(p => p.Id == Id);
         }
 
         ViewBag.Projeto = projeto;
@@ -54,13 +53,24 @@ public class AdminProductionController : Controller
     }
 
     [Route("/gerenciador/projetos/edit-form/{Id}")]
-    public async Task<IActionResult> Insert([FromServices] AppDbContext context, [FromForm] Projeto model, int Id)
+    public async Task<IActionResult> Update([FromServices] AppDbContext context, [FromForm] Projeto model, int Id)
     {
+        model.Id = Id;
+        var projeto = context.Projeto.FirstOrDefault(a => a.Id == Id);
+        //projeto = model;
 
-        var projeto = await context.Projeto.Where(a => a.Id == Id).FirstAsync();
-        projeto = model;
+        if (projeto == null)
+        {
+            // Se a instância não for encontrada, retornar um erro ou redirecionar
+            return NotFound();
+        }
 
-        context.Projeto.Update(projeto);
+        // Atualizar os valores dos campos
+        projeto.Nome = model.Nome;
+        projeto.DataInicio = model.DataInicio;
+        projeto.DataFim = model.DataFim;
+        projeto.SubareaKey = model.SubareaKey;
+        //context.Projeto.Update(projeto);
         context.SaveChanges();
 
         return Redirect("/gerenciador/projetos");
@@ -76,5 +86,21 @@ public class AdminProductionController : Controller
         context.SaveChanges();
 
         return Redirect("/gerenciador/projetos");
+    }
+
+    [HttpPost]
+    [Route("/gerenciador/projetos/delete")]
+    public IActionResult Delete([FromServices] AppDbContext context, [FromForm] int id)
+    {
+        // Recuperar a instância existente no banco de dados
+        var projeto = context.Projeto.FirstOrDefault(c => c.Id == id);
+
+        if (projeto == null)
+            return NotFound();
+
+        context.Projeto.Remove(projeto);
+        context.SaveChanges();
+
+        return Ok();
     }
 }

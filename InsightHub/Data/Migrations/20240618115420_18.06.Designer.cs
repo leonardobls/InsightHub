@@ -3,6 +3,7 @@ using System;
 using InsightHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsightHub.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240618115420_18.06")]
+    partial class _1806
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,9 +54,6 @@ namespace InsightHub.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("Data")
-                        .HasColumnType("date");
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("text");
@@ -62,19 +62,15 @@ namespace InsightHub.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("ProjId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProjetoKey")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<double?>("Valor")
                         .IsRequired()
                         .HasColumnType("double precision");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProjId");
 
                     b.ToTable("Captacao");
                 });
@@ -87,21 +83,16 @@ namespace InsightHub.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AreaId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
                     b.Property<string>("Nome")
                         .HasColumnType("text");
 
-                    b.Property<int?>("SubareaId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SubareaKey")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SubareaId");
 
                     b.ToTable("Pesquisador");
                 });
@@ -180,24 +171,6 @@ namespace InsightHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SubareaConhecimento");
-                });
-
-            modelBuilder.Entity("InsightHub.Models.Captacao", b =>
-                {
-                    b.HasOne("InsightHub.Models.Projeto", "Proj")
-                        .WithMany()
-                        .HasForeignKey("ProjId");
-
-                    b.Navigation("Proj");
-                });
-
-            modelBuilder.Entity("InsightHub.Models.Pesquisador", b =>
-                {
-                    b.HasOne("InsightHub.Models.SubareaConhecimento", "Subarea")
-                        .WithMany()
-                        .HasForeignKey("SubareaId");
-
-                    b.Navigation("Subarea");
                 });
 
             modelBuilder.Entity("InsightHub.Models.Projeto", b =>

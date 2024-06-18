@@ -75,17 +75,21 @@
 
         <label for="dataInicio">Data de Início:</label>
         <input type="date" id="dataInicio" name="dataInicio"
-            value="@(ViewBag.Projeto != null ? ViewBag.Projeto.DataInicio : null)" required>
+            value="@(ViewBag.Projeto != null ? ViewBag.Projeto.DataInicio.ToString("yyyy-MM-dd") : null)" required>
 
         <label for="dataFim">Data de Fim:</label>
         <input type="date" id="dataFim" name="dataFim" class="data"
-            value="@(ViewBag.Projeto != null ? ViewBag.Projeto.DataFim : null)" required>
+            value="@(ViewBag.Projeto != null ? ViewBag.Projeto.DataFim.ToString("yyyy-MM-dd") : null)" required>
 
         <label for="subarea">Subarea do projeto:</label>
         <select id="subarea" name="SubareaKey" required>
             @foreach (SubareaConhecimento item in ViewBag.Subareas)
             {
-                <option value="@item.Id">@item.Nome</option>
+                if (ViewBag.Projeto != null && ViewBag.Projeto.SubareaKey == item.Id){
+                    <option value="@item.Id" selected>@item.Nome</option>
+                }else{
+                    <option value="@item.Id">@item.Nome</option>
+                }
             }
         </select>
 

@@ -1,3 +1,4 @@
+@using InsightHub.Models;
 @{
     ViewData["Title"] = "Edição de Captações de Recursos";
     Layout = "_LayoutUnscoped";
@@ -55,57 +56,33 @@
         }
 
     </style>
-    <script>
-        function redirecionar(event) {
-            event.preventDefault(); // Evita o envio padrão do formulário
-
-            // Validar o formulário
-            var form = event.target;
-            if (form.checkValidity()) {
-                // Se o formulário for válido, redirecionar para uma página de sucesso
-                alert('Captações de Recursos editado com sucesso!');
-                window.location.href = '/gerenciador/captacoes'; // Descomente e ajuste conforme necessário
-            } else {
-                // Caso contrário, exibir as mensagens de validação nativas
-                form.reportValidity();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var form = document.querySelector('form');
-            form.addEventListener('submit', redirecionar);
-        });
-    </script>
-
 
         <h1>Edição de Captações de Recursos</h1>
         <br>
-        <form>
+        <form action="@(ViewBag.Captacao != null ? "/gerenciador/captacoes/edit-form/"+ViewBag.Captacao.Id : "/gerenciador/captacoes/add-form")"
+        enctype="multipart/form-data" method="post">
              <label for="projeto_vinculado">Área do projeto:</label>
-                <select id="projeto_vinculado">
-                    <option value="0">Projeto 0</option>
-                    <option value="1">Projeto 1</option>
-                    <option value="2">Projeto 2</option>
-                    <option value="3">Projeto 3</option>
-                    <option value="4">Projeto 4</option>
-                    <option value="5">Projeto 5</option>
+                <select id="projeto_vinculado" name="projetokey" required>
+                    @foreach (Projeto projeto in ViewBag.Projetos){
+                        if (ViewBag.Captacao != null && ViewBag.Captacao.ProjetoKey == projeto.Id){
+                            <option value="@projeto.Id" selected>@projeto.Nome</option>
+                        }else{
+                            <option value="@projeto.Id">@projeto.Nome</option>
+                        }
+                    }
                 </select>
 
             <label for="valor">Valor:</label>
-            <input type="text" id="valor" name="valor" required>
+            <input type="number" id="valor" name="valor" value="@(ViewBag.Captacao != null ? ViewBag.Captacao.Valor : null)" required>
 
-            <label for="tipo">Tipo:</label>
-                <select id="tipo">
-                    <option value="0">Financiamento</option>
-                    <option value="1">Bolsas de pesquisa</option>
-                    <option value="2">Mão de obra</option>
-                </select>
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" value="@(ViewBag.Captacao != null ? ViewBag.Captacao.Data.ToString("yyyy-MM-dd") : null)" required>
 
             <label for="descricao">Descriçao:</label>
-            <input type="text" id="descricao" name="descricao">
+            <input type="text" id="descricao" name="descricao" value="@(ViewBag.Captacao != null ? ViewBag.Captacao.Descricao : null)">
 
             <label for="fornecedor">Fornecedor:</label>
-            <input type="text" id="fornecedor" name="fornecedor">
+            <input type="text" id="fornecedor" name="fornecedor" value="@(ViewBag.Captacao != null ? ViewBag.Captacao.Fornecedor : null)">
 
             <button type="submit" class="button button--add">Cadastrar</button>
         </form>
