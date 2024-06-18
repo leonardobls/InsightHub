@@ -133,10 +133,12 @@ namespace InsightHub.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("SubareaKey")
+                    b.Property<int>("SubareaId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SubareaId");
 
                     b.ToTable("Projeto");
                 });
@@ -163,6 +165,17 @@ namespace InsightHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SubareaConhecimento");
+                });
+
+            modelBuilder.Entity("InsightHub.Models.Projeto", b =>
+                {
+                    b.HasOne("InsightHub.Models.SubareaConhecimento", "Subarea")
+                        .WithMany()
+                        .HasForeignKey("SubareaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Subarea");
                 });
 #pragma warning restore 612, 618
         }

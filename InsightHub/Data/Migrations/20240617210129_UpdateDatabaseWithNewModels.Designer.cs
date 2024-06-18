@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsightHub.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240607205200_cnpq")]
-    partial class cnpq
+    [Migration("20240617210129_UpdateDatabaseWithNewModels")]
+    partial class UpdateDatabaseWithNewModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,7 +136,12 @@ namespace InsightHub.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("SubareaId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SubareaId");
 
                     b.ToTable("Projeto");
                 });
@@ -149,8 +154,7 @@ namespace InsightHub.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AreaKey")
-                        .IsRequired()
+                    b.Property<int>("AreaKey")
                         .HasColumnType("integer");
 
                     b.Property<string>("Nome")
@@ -164,6 +168,17 @@ namespace InsightHub.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SubareaConhecimento");
+                });
+
+            modelBuilder.Entity("InsightHub.Models.Projeto", b =>
+                {
+                    b.HasOne("InsightHub.Models.SubareaConhecimento", "Subarea")
+                        .WithMany()
+                        .HasForeignKey("SubareaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Subarea");
                 });
 #pragma warning restore 612, 618
         }
