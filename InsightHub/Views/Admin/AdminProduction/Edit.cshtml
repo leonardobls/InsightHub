@@ -92,6 +92,17 @@
             }
         </select>
 
+        <label for="subarea">Pesquisadores envolvidos:</label>
+        <select id="subarea" name="Pesquisadores[]" multiple required>
+            @foreach (Pesquisador pesquisador in ViewBag.Pesquisadores)
+            {
+                @* bool isSelected = ViewBag.Pesquisadores != null && ViewBag.Projeto.Pesqu == pesquisador.Id ? true :
+            false; *@
+                @* selected="@isSelected" *@
+                <option value="@pesquisador.Id">@pesquisador.Nome</option>
+            }
+        </select>
+
         <button type="submit" class="button button--add">Cadastrar</button>
     </form>
 </div>

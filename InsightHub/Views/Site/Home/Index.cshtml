@@ -5,17 +5,12 @@
 
 
 <section class="home">
-
-    @* <div class="home__introduction">
-
-    </div> *@
-
     <div class="home__search_bar mb-4">
-        <form action="/projetos">
+        <form action="/busca" method="POST">
             <div class="row">
                 <p class="text text--white text--fw600 text--20 text--toupper">Busca rápida</p>
                 <label class="input-wrapper" for="fast_search">
-                    <input id="fast_search" type="text" name="fast_search"
+                    <input id="fast_search" type="text" name="FastSearch"
                         placeholder="Escreva o que você deseja buscar">
                     <span class="error"></span>
                 </label>
@@ -31,38 +26,7 @@
     </div>
 
     <div class="home__advanced_search mb-4">
-        <script>
-            function redirect(event) {
-                event.preventDefault(); // Evita que o formulário seja enviado
-
-                var inputElemento = document.getElementById("select_1");
-                if (!inputElemento) {
-                    console.error('Elemento de input não encontrado.');
-                    return;
-                }
-
-                var inputValor = inputElemento.value;
-                if (!inputValor) {
-                    console.error('Valor do input está vazio.');
-                    return;
-                }
-
-                console.log('Valor do elemento: ' + inputElemento);
-                console.log('Valor do input: ' + inputValor);
-                
-                if (inputValor === 'Pesquisa') {
-                    window.location.href = '/projetos';
-
-                } else if (inputValor === 'Pesquisador') {
-                    window.location.href = '/pesquisador';
-
-                } else {
-                    window.location.href = '/';
-                }
-            }
-        </script>
-        @* <form action="/projetos"> *@
-        <form onsubmit="redirect(event)">
+        <form>
             <p class="title text text--black text--fw600 text--20 text--toupper">Busca avançada</p>
             <div class="row" id="filters">
                 <label for="select_1">

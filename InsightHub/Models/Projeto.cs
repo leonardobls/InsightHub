@@ -24,6 +24,9 @@ namespace InsightHub.Models
         [ForeignKey("SubareaId")]
         public int SubareaId { get; set; }
 
-        public virtual SubareaConhecimento Subarea { get; set; }
+        public virtual SubareaConhecimento? Subarea { get; set; }
+
+        [NotMapped]
+        public virtual List<int>? Pesquisadores { get; set; }
     }
 }

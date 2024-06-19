@@ -24,7 +24,7 @@ public class AdminProductionController : Controller
         int totalItems = await context.Projeto.CountAsync();
         int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
-        ViewBag.CurrentPage = page;
+        ViewBag.CurrentPage = currentPage;
         ViewBag.TotalPages = totalPages;
         ViewBag.Projetos = projetos;
 
@@ -36,6 +36,7 @@ public class AdminProductionController : Controller
     {
         ViewBag.Areas = await context.AreaConhecimento.ToListAsync();
         ViewBag.Subareas = await context.SubareaConhecimento.ToListAsync();
+        ViewBag.Pesquisadores = await context.Pesquisador.ToListAsync();
 
         ViewBag.Projeto = null;
 
@@ -53,7 +54,6 @@ public class AdminProductionController : Controller
     [Route("/gerenciador/projetos/edit-form/{Id?}")]
     public async Task<IActionResult> Insert([FromServices] AppDbContext context, [FromForm] Projeto model, int? Id)
     {
-        model.Id = Id;
         if (Id != null)
         {
             var projeto = await context.Projeto.FindAsync(Id);
@@ -72,25 +72,12 @@ public class AdminProductionController : Controller
             context.Projeto.Add(model);
         }
 
-        _ = context.SaveChangesAsync();
+        _ = await context.SaveChangesAsync();
         return Redirect("/gerenciador/projetos");
     }
 
     [Route("/gerenciador/projetos/delete-form/{Id}")]
-    public async Task<IActionResult> Delete([FromServices] AppDbContext context, int Id)
-    {
-
-        var projeto = await context.Projeto.Where(a => a.Id == Id).FirstAsync();
-
-        context.Projeto.Remove(projeto);
-        context.SaveChanges();
-
-        return Redirect("/gerenciador/projetos");
-    }
-
-    [HttpPost]
-    [Route("/gerenciador/projetos/delete")]
-    public IActionResult Delete([FromServices] AppDbContext context, [FromForm] int id)
+    public IActionResult Delete([FromServices] AppDbContext context, int? id)
     {
         // Recuperar a instância existente no banco de dados
         var projeto = context.Projeto.FirstOrDefault(c => c.Id == id);
@@ -101,6 +88,6 @@ public class AdminProductionController : Controller
         context.Projeto.Remove(projeto);
         context.SaveChanges();
 
-        return Ok();
+        return Redirect("/gerenciador/projetos");
     }
 }

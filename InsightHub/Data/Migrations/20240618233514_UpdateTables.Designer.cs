@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsightHub.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240618171755_migratop")]
-    partial class migratop
+    [Migration("20240618233514_UpdateTables")]
+    partial class UpdateTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -148,15 +148,12 @@ namespace InsightHub.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("QualquerCoisaId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SubareaKey")
+                    b.Property<int>("SubareaId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("QualquerCoisaId");
+                    b.HasIndex("SubareaId");
 
                     b.ToTable("Projeto");
                 });
@@ -205,13 +202,13 @@ namespace InsightHub.Data.Migrations
 
             modelBuilder.Entity("InsightHub.Models.Projeto", b =>
                 {
-                    b.HasOne("InsightHub.Models.SubareaConhecimento", "QualquerCoisa")
+                    b.HasOne("InsightHub.Models.SubareaConhecimento", "Subarea")
                         .WithMany()
-                        .HasForeignKey("QualquerCoisaId")
+                        .HasForeignKey("SubareaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("QualquerCoisa");
+                    b.Navigation("Subarea");
                 });
 #pragma warning restore 612, 618
         }

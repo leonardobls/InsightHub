@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -6,13 +7,17 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsightHub.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateDatabaseWithNewModels : Migration
+    public partial class UpdateTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "CursoConhecimento");
+
+            migrationBuilder.DropColumn(
+                name: "Tipo",
+                table: "Captacao");
 
             migrationBuilder.AddColumn<int>(
                 name: "AreaKey",
@@ -52,8 +57,34 @@ namespace InsightHub.Data.Migrations
                 oldType: "text");
 
             migrationBuilder.AddColumn<int>(
-                name: "AreaId",
+                name: "SubareaId",
                 table: "Pesquisador",
+                type: "integer",
+                nullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "SubareaKey",
+                table: "Pesquisador",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<DateOnly>(
+                name: "Data",
+                table: "Captacao",
+                type: "date",
+                nullable: false,
+                defaultValue: new DateOnly(1, 1, 1));
+
+            migrationBuilder.AddColumn<int>(
+                name: "ProjId",
+                table: "Captacao",
+                type: "integer",
+                nullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "ProjetoKey",
+                table: "Captacao",
                 type: "integer",
                 nullable: false,
                 defaultValue: 0);
@@ -70,6 +101,30 @@ namespace InsightHub.Data.Migrations
                 table: "Projeto",
                 column: "SubareaId");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Pesquisador_SubareaId",
+                table: "Pesquisador",
+                column: "SubareaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Captacao_ProjId",
+                table: "Captacao",
+                column: "ProjId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Captacao_Projeto_ProjId",
+                table: "Captacao",
+                column: "ProjId",
+                principalTable: "Projeto",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Pesquisador_SubareaConhecimento_SubareaId",
+                table: "Pesquisador",
+                column: "SubareaId",
+                principalTable: "SubareaConhecimento",
+                principalColumn: "Id");
+
             migrationBuilder.AddForeignKey(
                 name: "FK_Projeto_SubareaConhecimento_SubareaId",
                 table: "Projeto",
@@ -83,12 +138,28 @@ namespace InsightHub.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
+                name: "FK_Captacao_Projeto_ProjId",
+                table: "Captacao");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Pesquisador_SubareaConhecimento_SubareaId",
+                table: "Pesquisador");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Projeto_SubareaConhecimento_SubareaId",
                 table: "Projeto");
 
             migrationBuilder.DropIndex(
                 name: "IX_Projeto_SubareaId",
                 table: "Projeto");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Pesquisador_SubareaId",
+                table: "Pesquisador");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Captacao_ProjId",
+                table: "Captacao");
 
             migrationBuilder.DropColumn(
                 name: "AreaKey",
@@ -103,8 +174,24 @@ namespace InsightHub.Data.Migrations
                 table: "Projeto");
 
             migrationBuilder.DropColumn(
-                name: "AreaId",
+                name: "SubareaId",
                 table: "Pesquisador");
+
+            migrationBuilder.DropColumn(
+                name: "SubareaKey",
+                table: "Pesquisador");
+
+            migrationBuilder.DropColumn(
+                name: "Data",
+                table: "Captacao");
+
+            migrationBuilder.DropColumn(
+                name: "ProjId",
+                table: "Captacao");
+
+            migrationBuilder.DropColumn(
+                name: "ProjetoKey",
+                table: "Captacao");
 
             migrationBuilder.DropColumn(
                 name: "Numero",
@@ -129,6 +216,13 @@ namespace InsightHub.Data.Migrations
                 oldClrType: typeof(string),
                 oldType: "text",
                 oldNullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Tipo",
+                table: "Captacao",
+                type: "text",
+                nullable: false,
+                defaultValue: "");
 
             migrationBuilder.CreateTable(
                 name: "CursoConhecimento",
