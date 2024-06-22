@@ -16,7 +16,9 @@ namespace InsightHub.Models
         public string? FilePath { get; set; }
 
         [Required]
-        [ForeignKey("ProjetoId")]
-        public int ProjetoId { get; set; }
+        [ForeignKey("ProjetoKey")]
+        public int ProjetoKey { get; set; }
+
+        public virtual Projeto? Projeto { get; set; }
     }
 }

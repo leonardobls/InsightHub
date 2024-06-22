@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace InsightHub.Data.Migrations
+namespace InsightHub.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240619003835_CreateProjetoPesquisadorPivot")]
-    partial class CreateProjetoPesquisadorPivot
+    [Migration("20240621002618_uopa")]
+    partial class uopa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,7 +123,10 @@ namespace InsightHub.Data.Migrations
                     b.Property<string>("FilePath")
                         .HasColumnType("text");
 
-                    b.Property<int>("ProjetoId")
+                    b.Property<int?>("ProjetoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProjetoKey")
                         .HasColumnType("integer");
 
                     b.Property<string>("Titulo")
@@ -131,6 +134,8 @@ namespace InsightHub.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjetoId");
 
                     b.ToTable("Producao");
                 });
@@ -243,6 +248,15 @@ namespace InsightHub.Data.Migrations
                         .HasForeignKey("SubareaId");
 
                     b.Navigation("Subarea");
+                });
+
+            modelBuilder.Entity("InsightHub.Models.Producao", b =>
+                {
+                    b.HasOne("InsightHub.Models.Projeto", "Projeto")
+                        .WithMany()
+                        .HasForeignKey("ProjetoId");
+
+                    b.Navigation("Projeto");
                 });
 
             modelBuilder.Entity("InsightHub.Models.Projeto", b =>

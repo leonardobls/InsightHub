@@ -10,8 +10,11 @@ namespace InsightHub.Controllers;
 public class AdminCaptacoesController : Controller
 {
     [Route("/gerenciador/captacoes")]
-    public async Task<IActionResult> List([FromServices] AppDbContext context)
+        public async Task<IActionResult> List([FromServices] AppDbContext context, [FromQuery] int? page)
     {
+        int pageSize = 10; // Número de itens por página
+        int currentPage = page ?? 1; // Página atual, padrão é 1 se não for fornecido
+
         var captacoes = await context.Captacao.Select(c => new Captacao {
             Id = c.Id,
             Valor = c.Valor,
@@ -19,10 +22,34 @@ public class AdminCaptacoesController : Controller
             Descricao = c.Descricao,
             Fornecedor = c.Fornecedor,
             Proj = (c.Proj as Projeto)
-        }).OrderBy(p => p.Proj.Nome).ToListAsync();
+        })
+            .OrderBy(x => x.Id)
+            .Skip((currentPage - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+        int totalItems = await context.Producao.CountAsync();
+        int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+        ViewBag.CurrentPage = currentPage;
+        ViewBag.TotalPages = totalPages;
         ViewBag.Captacoes = captacoes;
+
         return View();
     }
+    // public async Task<IActionResult> List([FromServices] AppDbContext context)
+    // {
+    //     var captacoes = await context.Captacao.Select(c => new Captacao {
+    //         Id = c.Id,
+    //         Valor = c.Valor,
+    //         Data = c.Data,
+    //         Descricao = c.Descricao,
+    //         Fornecedor = c.Fornecedor,
+    //         Proj = (c.Proj as Projeto)
+    //     }).OrderBy(p => p.Proj.Nome).ToListAsync();
+    //     ViewBag.Captacoes = captacoes;
+    //     return View();
+    // }
 
     [Route("/gerenciador/captacoes/edit/{Id?}")]
     public async Task<IActionResult> Edit([FromServices] AppDbContext context, int Id)

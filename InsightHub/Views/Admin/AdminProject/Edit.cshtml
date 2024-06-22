@@ -64,31 +64,42 @@
         }
     </style>
 
-    <h1>@(ViewBag.Producao != null ? "Editar" : "Adicionar") Producao</h1>
+    <h1>@(ViewBag.Projeto != null ? "Editar" : "Adicionar") Projeto</h1>
     <br>
     <form
-        action="@(ViewBag.Producao != null ? "/gerenciador/producoes/edit-form/" +ViewBag.Producao.Id : "/gerenciador/producoes/edit-form")"
+        action="@(ViewBag.Projeto != null ? "/gerenciador/projetos/edit-form/"+ViewBag.Projeto.Id : "/gerenciador/projetos/edit-form")"
         enctype="multipart/form-data" method="post">
-        <label for="titulo">Titulo:</label>
-        <input type="text" id="titulo" name="titulo" value="@(ViewBag.Producao != null ? ViewBag.Producao.Titulo : null)"
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="@(ViewBag.Projeto != null ? ViewBag.Projeto.Nome : null)"
             required>
 
-        <label for="description">Descricao:</label>
-        <input type="text" id="description" name="description"
-            value="@(ViewBag.Producao != null && ViewBag.Producao.Description != null ? ViewBag.Producao.Description : "")"
+        <label for="dataInicio">Data de Início:</label>
+        <input type="date" id="dataInicio" name="dataInicio"
+            value="@(ViewBag.Projeto != null && ViewBag.Projeto.DataInicio != null ? DateTime.Parse(ViewBag.Projeto.DataInicio.ToString()).ToString("yyyy-MM-dd") : "")"
             required>
 
-        <label for="filepath">URL para acesso da produção:</label>
-        <input type="text" id="filePath" name="filePath" class="data"
-            value="@(ViewBag.Producao != null && ViewBag.Producao.FilePath != null ? ViewBag.Producao.FilePath  : "")"
+        <label for="dataFim">Data de Fim:</label>
+        <input type="date" id="dataFim" name="dataFim" class="data"
+            value="@(ViewBag.Projeto != null && ViewBag.Projeto.DataFim != null ? DateTime.Parse(ViewBag.Projeto.DataFim.ToString()).ToString("yyyy-MM-dd") : "")"
             required>
 
-        <label for="projetoKey">Projeto de origem:</label>
-        <select id="projetoKey" name="projetoKey" required>
-            @foreach (Projeto item in ViewBag.Projetos)
+        <label for="subarea">Subarea do projeto:</label>
+        <select id="subarea" name="SubareaId" required>
+            @foreach (SubareaConhecimento item in ViewBag.Subareas)
             {
-                bool isSelected = ViewBag.Producao != null && ViewBag.Producao.ProjetoKey == item.Id ? true : false;
+                bool isSelected = ViewBag.Projeto != null && ViewBag.Projeto.SubareaId == item.Id ? true : false;
                 <option value="@item.Id" selected="@isSelected">@item.Nome</option>
+            }
+        </select>
+
+        <label for="subarea">Pesquisadores envolvidos:</label>
+        <select id="subarea" name="Pesquisadores[]" multiple required>
+            @foreach (Pesquisador pesquisador in ViewBag.Pesquisadores)
+            {
+                @* bool isSelected = ViewBag.Pesquisadores != null && ViewBag.Projeto.Pesqu == pesquisador.Id ? true :
+            false; *@
+                @* selected="@isSelected" *@
+                <option value="@pesquisador.Id">@pesquisador.Nome</option>
             }
         </select>
 
