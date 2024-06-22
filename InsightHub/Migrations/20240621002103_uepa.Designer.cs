@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace InsightHub.Data.Migrations
+namespace InsightHub.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240618233514_UpdateTables")]
-    partial class UpdateTables
+    [Migration("20240621002103_uepa")]
+    partial class uepa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -117,15 +117,22 @@ namespace InsightHub.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("FilePath")
-                        .IsRequired()
+                    b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("Tipo")
+                    b.Property<string>("FilePath")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProjetoId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjetoId");
 
                     b.ToTable("Producao");
                 });
@@ -156,6 +163,46 @@ namespace InsightHub.Data.Migrations
                     b.HasIndex("SubareaId");
 
                     b.ToTable("Projeto");
+                });
+
+            modelBuilder.Entity("InsightHub.Models.ProjetoPesquisadorPivot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PesquisadorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProjetoId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PesquisadorId");
+
+                    b.HasIndex("ProjetoId");
+
+                    b.ToTable("ProjetoPesquisadorPivot");
+                });
+
+            modelBuilder.Entity("InsightHub.Models.ProjetoTipo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjetoTipo");
                 });
 
             modelBuilder.Entity("InsightHub.Models.SubareaConhecimento", b =>
@@ -200,6 +247,17 @@ namespace InsightHub.Data.Migrations
                     b.Navigation("Subarea");
                 });
 
+            modelBuilder.Entity("InsightHub.Models.Producao", b =>
+                {
+                    b.HasOne("InsightHub.Models.Projeto", "Projeto")
+                        .WithMany()
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Projeto");
+                });
+
             modelBuilder.Entity("InsightHub.Models.Projeto", b =>
                 {
                     b.HasOne("InsightHub.Models.SubareaConhecimento", "Subarea")
@@ -209,6 +267,25 @@ namespace InsightHub.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Subarea");
+                });
+
+            modelBuilder.Entity("InsightHub.Models.ProjetoPesquisadorPivot", b =>
+                {
+                    b.HasOne("InsightHub.Models.Pesquisador", "Pesquisador")
+                        .WithMany()
+                        .HasForeignKey("PesquisadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InsightHub.Models.Projeto", "Projeto")
+                        .WithMany()
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pesquisador");
+
+                    b.Navigation("Projeto");
                 });
 #pragma warning restore 612, 618
         }
