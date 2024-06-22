@@ -1,7 +1,7 @@
 @using InsightHub.Models
 
 @{
-    ViewData["Title"] = "Admin Projetos Listagem Page";
+    ViewData["Title"] = "Admin Producoes Listagem Page";
     Layout = "_AdminLayout";
 }
 
@@ -17,12 +17,12 @@
             </a>
             <div class="breadcrumbs">
                 <a href="/gerenciador">Início</a>
-                <a href="">Listagem Produções</a>
+                <a href="">Listagem Producoes</a>
             </div>
-            <div class="title">Lista de Produções</div>
+            <div class="title">Lista de Producoes</div>
         </div>
         <div class="right">
-            <a class="button button--add" href="/gerenciador/projetos/edit">
+            <a class="button button--add" href="/gerenciador/producoes/edit">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                     fill="#e8eaed">
                     <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
@@ -38,24 +38,25 @@
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
-                    <th>Data Início</th>
-                    <th>Data Fim</th>
-                    <th>Tipo</th>
+                    <th>Descricao</th>
+                    <th>URL</th>
+                    <th>Projeto</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (Projeto projeto in ViewBag.Projetos)
+                @foreach (Producao producoes in ViewBag.Producoes)
                 {
                     <tr id="row">
-                        <td>@projeto.Id</td>
-                        <td>@projeto.Nome</td>
-                        <td>@projeto.DataInicio</td>
-                        <td>@projeto.DataFim</td>
+                        <td>@producoes.Id</td>
+                        <td>@producoes.Titulo</td>
+                        <td>@producoes.Description</td>
+                        <td>@producoes.FilePath</td>
+                        <td>@(producoes.Projeto != null ? producoes.Projeto.Nome : "N/A")</td>
                         <td>Pesquisa</td>
                         <td>
                             <div class="buttons-wrapper">
-                                <a href="projetos/edit/@projeto.Id" class="button button--edit">
+                                <a href="producoes/edit/@producoes.Id" class="button button--edit">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                         width="24px" fill="#e8eaed">
                                         <path
@@ -63,7 +64,7 @@
                                     </svg>
                                     Editar
                                 </a>
-                                <a href="projetos/delete-form/@projeto.Id" class="button button--delete">
+                                <a href="producoes/delete-form/@producoes.Id" class="button button--delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                         width="24px" fill="#e8eaed">
                                         <path

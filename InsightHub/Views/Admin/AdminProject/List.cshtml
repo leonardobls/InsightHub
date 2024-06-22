@@ -1,13 +1,14 @@
 @using InsightHub.Models
+
 @{
-    ViewData["Title"] = "Admin Arrecadações Listagem Page";
+    ViewData["Title"] = "Admin Projetos Listagem Page";
     Layout = "_AdminLayout";
 }
 
-<div class="collections">
+<div class="productions">
     <div class="header">
         <div class="left">
-            <a href="/gerenciador" class="button button--back">
+            <a class="button button--back" href="/gerenciador">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                     fill="#e8eaed">
                     <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
@@ -16,12 +17,12 @@
             </a>
             <div class="breadcrumbs">
                 <a href="/gerenciador">Início</a>
-                <a href="">Listagem Arrecadações</a>
+                <a href="">Listagem Projetos</a>
             </div>
-            <div class="title">Lista de Arrecadações</div>
+            <div class="title">Lista de Projetos</div>
         </div>
         <div class="right">
-            <a href="/gerenciador/captacoes/edit/0" class="button button--add">
+            <a class="button button--add" href="/gerenciador/projetos/edit">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                     fill="#e8eaed">
                     <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
@@ -31,67 +32,38 @@
         </div>
     </div>
 
-    <script>
-        function deleteCaptacao(id) {
-            if (confirm('Tem certeza que deseja excluir este registro?')) {
-                fetch('/gerenciador/captacoes/delete', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: 'id=' + id
-                })
-                .then(response => {
-                    if (response.ok) {
-                        // Remover a linha da tabela
-                        document.getElementById('row-' + id).remove();
-                    } else {
-                        alert('Erro ao excluir o registro.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    alert('Erro ao excluir o registro.');
-                });
-            }
-        }
-    </script>
-
     <div class="content">
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Fornecedor</th>
-                    <th>Projeto</th>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                    <th>Data</th>
+                    <th>Título</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Tipo</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (Captacao captacao in ViewBag.Captacoes)
+                @foreach (Projeto projeto in ViewBag.Projetos)
                 {
-                    <tr id="row-@captacao.Id">
-                        <td>@captacao.Id</td>
-                        <td>@captacao.Fornecedor</td>
-                        <td>@(captacao.Proj != null ? captacao.Proj.Nome : "N/A")</td>
-                        <td>@(captacao.Descricao != null ? 
-                            captacao.Descricao.Substring(0, Math.Min(captacao.Descricao.Length, 20)) 
-                            : "N/A")</td>
-                        <td>@captacao.Valor</td>
-                        <td>@captacao.Data</td>
+                    <tr id="row">
+                        <td>@projeto.Id</td>
+                        <td>@projeto.Nome</td>
+                        <td>@projeto.DataInicio</td>
+                        <td>@projeto.DataFim</td>
+                        <td>Pesquisa</td>
                         <td>
                             <div class="buttons-wrapper">
-                                <a href="/gerenciador/captacoes/edit/@captacao.Id" class="button button--edit">
+                                <a href="projetos/edit/@projeto.Id" class="button button--edit">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                         width="24px" fill="#e8eaed">
                                         <path
                                             d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
-                                    </svg>Editar
+                                    </svg>
+                                    Editar
                                 </a>
-                                <a onclick="deleteCaptacao(@captacao.Id)" class="button button--delete">
+                                <a href="projetos/delete-form/@projeto.Id" class="button button--delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                         width="24px" fill="#e8eaed">
                                         <path

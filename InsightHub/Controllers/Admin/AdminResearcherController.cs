@@ -10,13 +10,33 @@ namespace InsightHub.Controllers;
 public class AdminResearcherController : Controller
 {
     [Route("/gerenciador/pesquisadores")]
-    public async Task<IActionResult> List([FromServices] AppDbContext context)
+        public async Task<IActionResult> List([FromServices] AppDbContext context, [FromQuery] int? page)
     {
-        var pesquisadores = await context.Pesquisador.Include(p => (p as Pesquisador).Subarea).OrderBy(p => p.Nome).ToListAsync();
+        int pageSize = 10; // Número de itens por página
+        int currentPage = page ?? 1; // Página atual, padrão é 1 se não for fornecido
 
+        var pesquisadores = await context.Pesquisador.Include(p => (p as Pesquisador).Subarea)
+            .OrderBy(x => x.Id)
+            .Skip((currentPage - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        int totalItems = await context.Projeto.CountAsync();
+        int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+        ViewBag.CurrentPage = currentPage;
+        ViewBag.TotalPages = totalPages;
         ViewBag.Pesquisadores = pesquisadores;
+
         return View();
     }
+    // public async Task<IActionResult> List([FromServices] AppDbContext context)
+    // {
+    //     var pesquisadores = await context.Pesquisador.Include(p => (p as Pesquisador).Subarea).OrderBy(p => p.Nome).ToListAsync();
+
+    //     ViewBag.Pesquisadores = pesquisadores;
+    //     return View();
+    // }
 
     [Route("/gerenciador/pesquisadores/edit/{id}")]
     public async Task<IActionResult> Edit([FromServices] AppDbContext context, int Id)

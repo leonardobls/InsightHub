@@ -1,10 +1,11 @@
 using System.Diagnostics;
+using InsightHub.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InsightHub.Controllers;
 
 [Route("/projetos")]
-public class ProductionController : Controller
+public class ProjectController : Controller
 {
 
     [Route("")]
@@ -13,10 +14,11 @@ public class ProductionController : Controller
         return View();
     }
 
-    [Route("{slug}")]
-    public IActionResult Detail(String slug)
+    [Route("{Id}")]
+    public async Task<IActionResult> Detail([FromServices] AppDbContext context, int Id)
     {
-        ViewBag.TituloDetalhe = slug;
+        var projeto = await context.Projeto.FindAsync(Id);
+        ViewBag.Projeto = projeto;
         return View();
     }
 
