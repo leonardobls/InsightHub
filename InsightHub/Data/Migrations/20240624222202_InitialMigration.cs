@@ -4,10 +4,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace InsightHub.Migrations
+namespace InsightHub.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class uepa : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -129,7 +129,8 @@ namespace InsightHub.Migrations
                     Titulo = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     FilePath = table.Column<string>(type: "text", nullable: true),
-                    ProjetoId = table.Column<int>(type: "integer", nullable: false)
+                    ProjetoKey = table.Column<int>(type: "integer", nullable: false),
+                    ProjetoId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -138,8 +139,7 @@ namespace InsightHub.Migrations
                         name: "FK_Producao_Projeto_ProjetoId",
                         column: x => x.ProjetoId,
                         principalTable: "Projeto",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

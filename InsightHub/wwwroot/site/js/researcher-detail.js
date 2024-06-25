@@ -8,5 +8,8 @@ function changeFooterColor() {
 
 
 $(() => {
+
+    console.log("HOME PAGE");
+
     init();
 });

@@ -3,20 +3,17 @@ using System;
 using InsightHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace InsightHub.Migrations
+namespace InsightHub.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240621002103_uepa")]
-    partial class uepa
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,7 +120,10 @@ namespace InsightHub.Migrations
                     b.Property<string>("FilePath")
                         .HasColumnType("text");
 
-                    b.Property<int>("ProjetoId")
+                    b.Property<int?>("ProjetoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProjetoKey")
                         .HasColumnType("integer");
 
                     b.Property<string>("Titulo")
@@ -251,9 +251,7 @@ namespace InsightHub.Migrations
                 {
                     b.HasOne("InsightHub.Models.Projeto", "Projeto")
                         .WithMany()
-                        .HasForeignKey("ProjetoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProjetoId");
 
                     b.Navigation("Projeto");
                 });

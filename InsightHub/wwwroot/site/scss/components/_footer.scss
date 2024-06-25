@@ -1,9 +1,37 @@
 .footer {
+    position: relative;
     height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
     background: transparent;
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: calc(100% - 16rem);
+        height: 1px;
+        background: #000;
+        top: 0;
+        left: 8rem;
+    }
+
+    .link {
+        position: relative;
+
+        &:not(:last-child) {
+            &:after {
+                content: '';
+                position: absolute;
+                width: 2px;
+                height: 1.5rem;
+                background: #000;
+                top: 0;
+                right: -1rem;
+            }
+        }
+    }
 
     &.is-white {
         background-color: #FFFFFF;

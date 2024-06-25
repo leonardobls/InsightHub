@@ -4,88 +4,289 @@
     ViewData["Title"] = "Home Page";
 }
 
+@section scripts {
+    <script src="~/site/js/home.js" asp-append-version="true"></script>
+}
+
 
 <section class="home">
-    <form action="/busca" method="POST">
-        <div class="home__search_bar mb-4">
-            <div class="row">
-                <p class="text text--white text--fw600 text--20 text--toupper">Busca rápida</p>
-                <label class="input-wrapper" for="fast_search">
-                    <input id="fast_search" type="text" name="FastSearch"
-                        placeholder="Escreva o que você deseja buscar">
-                    <span class="error"></span>
-                </label>
+    <div class="home__descriptions">
+        <div class="initial-title">
+            <img src="/site/images/logo-transparent.png" alt="logo">
+            <h1><span class="title title--40 title--white title--fw700">INSIGHTHUB</span><span
+                    class="text text--40 text--white">Portal de
+                    Conhecimentos
+                    UCS</span></h1>
+        </div>
+        <p class="description text text--white text--20 text--600">
+            Bem-vindo ao Portal de Pesquisas da Universidade de Caxias do Sul. Explore descobertas
+            científicas, inovações e colaborações inspiradoras. Acesse artigos acadêmicos e projetos de pesquisa em
+            andamento.
+        </p>
+    </div>
+    <div class="home__search">
+        <form action="/busca" method="POST">
+            <div class="simple-search">
+                <h3 class="text text--white text--fw600 text--20">Busca rápida</h3>
+                <div class="input-wrapper">
+                    <label for="fast_search">
+                        <input id="fast_search" type="text" name="FastSearch"
+                            placeholder="Escreva o que você deseja buscar">
+                        <span class="error"></span>
+                    </label>
+
+                    <button type="submit" class="btn-submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#e8eaed">
+                            <path
+                                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                        </svg>
+                        <div class="label text text--white text--13 text--fw600">PESQUISAR</div>
+                    </button>
+                </div>
             </div>
-            <button type="submit" class="btn-submit">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#e8eaed">
-                    <path
-                        d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
-                </svg>
-            </button>
-        @*</form>*@
-        </div>
 
-        <div class="home__advanced_search mb-4">
-        @*<form>*@
-            <p class="title text text--black text--fw600 text--20 text--toupper">Busca avançada</p>
-            <div class="row" id="filters">
-                <label for="Goal">
-                    <p class="text text--15 text--black text--fw300 mb-1">Tipo da busca:</p>
-                    <select id="Goal" name="Goal">
-                        <option value="0" disabled="true" selected="true">Selecione uma opção</option>
-                        <option value="Ambos">Ambos</option>
-                        <option value="Projeto">Projeto</option>
-                        <option value="Pesquisador">Pesquisador</option>
-                    </select>
-                </label>
+            <div class="advanced_search">
+                <h3 class="text text--white text--fw600 text--20">Busca rápida</h3>
+                <div class="filters">
+                    <div class="select">
+                        <div class="text text--13 text--black text--fw700 text--toupper mb-1">Tipo de Busca</div>
+                        <div class="select-input js-select-input">
+                            <div class="select-placeholder js-input-trigger">Selecione uma opção
+                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
+                                        fill="black" />
+                                </svg>
+                            </div>
+                            <div class="select-options">
+                                <div class="scroll-wrap">
+                                    <div class="scroll">
+                                        <div class="radio-group">
+                                            <input id="type--1" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--1" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Ambos</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--2" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--2" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Projeto</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--3" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--3" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Pesquisador</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--4" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--4" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Projeto</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--5" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--5" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Pesquisador</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <div class="text text--13 text--black text--fw700 text--toupper mb-1">Categoria</div>
+                        <div class="select-input js-select-input">
+                            <div class="select-placeholder js-input-trigger">Selecione uma opção
+                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
+                                        fill="black" />
+                                </svg>
+                            </div>
+                            <div class="select-options">
+                                <div class="scroll-wrap">
+                                    <div class="scroll">
+                                        <div class="radio-group">
+                                            <input id="category--1" type="radio" class="radio-input" name="Category" />
+                                            <label for="type--1" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                <div class="label-text">Artigo Científico</div>
+                                            </label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="category--2" type="radio" class="radio-input" name="Category" />
+                                            <label for="type--2" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                <div class="label-text">Revisão Sistemática</div>
+                                            </label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="category--3" type="radio" class="radio-input" name="Category" />
+                                            <label for="type--3" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                <div class="label-text">Livro ou Capítulo de Livro</div>
+                                            </label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="category--4" type="radio" class="radio-input" name="Category" />
+                                            <label for="type--4" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                <div class="label-text">Tese ou Dissertação</div>
+                                            </label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="category--5" type="radio" class="radio-input" name="Category" />
+                                            <label for="type--5" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                <div class="label-text">Participação em Conferências</div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select">
+                        <p class="text text--13 text--black text--fw700 text--toupper mb-1">ÁREA DO CONHECIMENTO</p>
+                        <div class="select-input js-select-input">
+                            <div class="select-placeholder js-input-trigger">Selecione uma opção
+                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
+                                        fill="black" />
+                                </svg>
+                            </div>
+                            <div class="select-options">
+                                <div class="scroll-wrap">
+                                    <div class="scroll">
+                                        <div class="radio-group">
+                                            <input id="type--1" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--1" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Ambos</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--2" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--2" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Projeto</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--3" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--3" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Pesquisador</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--4" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--4" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Projeto</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--5" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--5" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Pesquisador</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-
-                <label for="Area">
-                    <p class="text text--15 text--black text--fw300 mb-1">Filtro dois:</p>
-                    <select id="Area" name="Area">
-                        <option value="0" disabled="true" selected="true">Selecione uma opção</option>
-
-                        @foreach (SubareaConhecimento subarea in ViewBag.Subareas)
-                        {
-                            <option value="@subarea.Id">@subarea.Nome</option>
-                        }
-                    </select>
-                </label>
-
-                <label for="select_3">
-                    <p class="text text--15 text--black text--fw300 mb-1">Filtro três:</p>
-                    <select id="select_3">
-                        <option value="0" disabled="true" selected="true">Selecione uma opção</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </label>
-
-                <label for="select_4">
-                    <div class="text text--15 text--black text--fw300 mb-1">Filtro quatro:</div>
-                    <select id="select_4">
-                        <option value="0" disabled="true" selected="true">Selecione uma opção</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </label>
+                    <div class="select">
+                        <p class="text text--13 text--black text--fw700 text--toupper mb-1">CURSO</p>
+                        <div class="select-input js-select-input">
+                            <div class="select-placeholder js-input-trigger">Selecione uma opção
+                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
+                                        fill="black" />
+                                </svg>
+                            </div>
+                            <div class="select-options">
+                                <div class="scroll-wrap">
+                                    <div class="scroll">
+                                        <div class="radio-group">
+                                            <input id="type--1" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--1" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Ambos</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--2" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--2" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Projeto</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--3" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--3" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Pesquisador</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--4" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--4" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Projeto</label>
+                                        </div>
+                                        <div class="radio-group">
+                                            <input id="type--5" type="radio" class="radio-input" name="Type" />
+                                            <label for="type--5" class="radio-label">
+                                                <span class="radio-button"></span>
+                                                Pesquisador</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </form>
-
-    <div class="home__detail_panels">
-        <div class="panel" id="panel_1">
-            <p class="text text--15 text--black text--fw500">Detalhe 1</p>
-        </div>
-
-        <div class="panel" id="panel_2">
-            <p class="text text--15 text--black text--fw500">Detalhe 2</p>
-        </div>
-
-        <div class="panel" id="panel_3">
-            <p class="text text--15 text--black text--fw500">Detalhe 3</p>
-        </div>
+        </form>
     </div>
 
+    <div class="home__last-projects">
+        <h2 class="text text--black text--fw600 text--30 mb-5">Projetos Mais Recentes</h2>
+        <div class="projects-list">
+            @for (int i = 0; i < 5; i++)
+            {
+                <div class="card">
+                    <div class="top-row mb-3">
+                        <h3 class="text text--20 text--fw500">A Influência da Atividade Física na Saúde Mental de
+                            Estudantes
+                            Universitários</h3>
+                        <div class="author text text--16 text--fw500">Prof.Dr.Maria da Rosa</div>
+                    </div>
+
+                    <p class="description text text--16 text--fw300 mb-3">Estudo investiga os efeitos positivos da atividade
+                        física na
+                        saúde
+                        mental de estudantes
+                        universitários, destacando a importância da prática regular de exercícios para redução do estresse e
+                        melhoria do bem-estar psicológico.</p>
+                    <div class="bottom-row">
+                        <div class="tags">
+                            <div class="tag text text--16 text--fw500">Ciências da Saúde</div>
+                            <div class="tag text text--16 text--fw500">Saúde Coletiva</div>
+                            <div class="tag text text--16 text--fw500">Psicologia Fisiológica</div>
+                            <div class="tag text text--16 text--fw500">Psicologia</div>
+                        </div>
+                        <div class="date text text--16 text--fw500">
+                            1 de Junho, 2024
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <a href="" class="button button--black">
+            <div class="text text--15 text--white">Ver Mais</div>
+        </a>
+    </div>
 </section>

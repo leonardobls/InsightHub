@@ -1,9 +1,12 @@
 {
   "dependencies": {
+    "jquery": "^3.7.1",
     "sass": "^1.77.0"
   },
-
- "scripts": {
+  "scripts": {
     "sass-dev": "sass --watch --update --style=expanded wwwroot/site/scss:wwwroot/site/css wwwroot/admin/scss:wwwroot/admin/css"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0"
   }
 }
