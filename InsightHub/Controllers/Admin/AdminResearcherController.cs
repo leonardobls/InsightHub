@@ -10,10 +10,10 @@ namespace InsightHub.Controllers;
 public class AdminResearcherController : Controller
 {
     [Route("/gerenciador/pesquisadores")]
-        public async Task<IActionResult> List([FromServices] AppDbContext context, [FromQuery] int? page)
+    public async Task<IActionResult> List([FromServices] AppDbContext context, [FromQuery] int? page)
     {
-        int pageSize = 10; // Número de itens por página
-        int currentPage = page ?? 1; // Página atual, padrão é 1 se não for fornecido
+        int pageSize = 10;
+        int currentPage = page ?? 1;
 
         var pesquisadores = await context.Pesquisador.Include(p => (p as Pesquisador).Subarea)
             .OrderBy(x => x.Id)
@@ -30,70 +30,36 @@ public class AdminResearcherController : Controller
 
         return View();
     }
-    // public async Task<IActionResult> List([FromServices] AppDbContext context)
-    // {
-    //     var pesquisadores = await context.Pesquisador.Include(p => (p as Pesquisador).Subarea).OrderBy(p => p.Nome).ToListAsync();
-
-    //     ViewBag.Pesquisadores = pesquisadores;
-    //     return View();
-    // }
 
     [Route("/gerenciador/pesquisadores/edit/{id}")]
     public async Task<IActionResult> Edit([FromServices] AppDbContext context, int Id)
     {
-        var subareas = await context.SubareaConhecimento.Select(a => new SubareaConhecimento
-            {
-                Id = a.Id,
-                Nome = a.Nome,
-                Numero = a.Numero
-            }).ToListAsync();
-
-        ViewBag.Subareas = subareas;
-
-        Pesquisador pesquisador = null;
-
-        if (Id != 0)
-        {
-            pesquisador = await context.Pesquisador
-            .Include(p => (p as Pesquisador).Subarea) // Acesso direto à propriedade de navegação
-            .FirstOrDefaultAsync(p => p.Id == Id);
-        }
-
-        ViewBag.Pesquisador = pesquisador;
+        ViewBag.Subareas = await context.SubareaConhecimento.OrderBy(x => x.Nome).ToListAsync();
+        ViewBag.Pesquisador = await context.Pesquisador
+             .Include(p => p.Subarea)
+             .FirstOrDefaultAsync(p => p.Id == Id);
 
         return View();
     }
 
     [Route("/gerenciador/pesquisadores/edit-form/{Id}")]
-    public async Task<IActionResult> Update([FromServices] AppDbContext context, [FromForm] Pesquisador model, int Id)
+    public async Task<IActionResult> Update([FromServices] AppDbContext context, [FromForm] Pesquisador model, int? Id)
     {
-        model.Id = Id;
-        var pesquisador = context.Pesquisador.FirstOrDefault(a => a.Id == Id);
-        //projeto = model;
-
-        if (pesquisador == null)
+        if (Id != null)
         {
-            // Se a instância não for encontrada, retornar um erro ou redirecionar
-            return NotFound();
+            var subarea = context.SubareaConhecimento.First(x => x.Id == model.SubareaKey);
+            var pesquisador = context.Pesquisador.First(a => a.Id == Id);
+            pesquisador.Nome = model.Nome;
+            pesquisador.Email = model.Email;
+            pesquisador.SubareaKey = model.SubareaKey;
+            pesquisador.Subarea = subarea;
+        }
+        else
+        {
+            context.Pesquisador.Add(model);
         }
 
-        // Atualizar os valores dos campos
-        pesquisador.Nome = model.Nome;
-        pesquisador.Email = model.Email;
-        pesquisador.SubareaKey = model.SubareaKey;
-
-        var subarea = await context.SubareaConhecimento.FindAsync(model.SubareaKey);
-
-        if (subarea == null)
-        {
-            return NotFound("Subarea não encontrada");
-        }
-
-        pesquisador.Subarea = subarea;
-
-
-        //context.Projeto.Update(projeto);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
 
         return Redirect("/gerenciador/pesquisadores");
     }
@@ -119,7 +85,7 @@ public class AdminResearcherController : Controller
 
         //return Ok();
         return Redirect("/gerenciador/pesquisadores");
-    }    
+    }
 
     [HttpPost]
     [Route("/gerenciador/pesquisadores/delete")]

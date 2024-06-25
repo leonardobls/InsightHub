@@ -18,7 +18,6 @@ namespace InsightHub.Models
         [ForeignKey("AreaKey")]
         public int AreaKey { get; set; }
 
-        [NotMapped]
         public virtual AreaConhecimento AreaConhecimento { get; set; }
     }
 }

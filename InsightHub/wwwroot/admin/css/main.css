@@ -243,11 +243,18 @@ body {
 .text--15 {
   font-size: 1.5rem;
 }
+.text--16 {
+  font-size: 1.6rem;
+}
 .text--20 {
   font-size: 2rem;
 }
+.text--30 {
+  font-size: 3rem;
+}
 .text--40 {
   font-size: 4rem;
+  letter-spacing: -7%;
 }
 .text--fw200 {
   font-weight: 200;
@@ -276,11 +283,22 @@ body {
 .text--black {
   color: #000000;
 }
-.text--center {
-  text-align: center;
-}
 .text--toupper {
   text-transform: uppercase;
+}
+
+.title {
+  font-family: "League Spartan", sans-serif;
+  line-height: 100%;
+}
+.title--40 {
+  font-size: 4rem;
+}
+.title--fw700 {
+  font-weight: 700;
+}
+.title--white {
+  color: #FFFFFF;
 }
 
 .mb-1 {
@@ -317,8 +335,20 @@ body {
 .button--add {
   background: green;
 }
-.button--back {
-  background: black;
+.button--black {
+  background: #000000;
+  border: 2px solid #000000;
+  transition: 0.3s all ease;
+}
+.button--black:hover {
+  background: transparent;
+  transition: 0.3s all ease;
+}
+.button--black:hover .text {
+  color: #000000 !important;
+}
+.button--black:hover svg path {
+  fill: #000000 !important;
 }
 .button--edit {
   background: #cc9d02;
@@ -573,6 +603,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.login__left .button {
+  position: absolute;
+  top: 3rem;
+  left: 5rem;
 }
 .login__right {
   height: 100%;
@@ -643,6 +679,8 @@ body {
   border-radius: 10px;
   padding: 10px 30px;
   color: #FFF;
+  height: 5rem;
+  justify-content: center;
 }
 .login__right #return {
   margin-top: 10px;
@@ -655,6 +693,20 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0 5rem;
+}
+.dashboard .top-row {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 1.6rem;
+  margin: 0 auto 4rem;
+}
+.dashboard .top-row h1 {
+  display: flex;
+  gap: 1.5rem;
+}
+.dashboard .top-row .text {
+  line-height: 150%;
 }
 
 .collections {

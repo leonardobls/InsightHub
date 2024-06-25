@@ -35,8 +35,25 @@ $secondary-color: #B2B2B2;
         background: green;
     }
 
-    &--back {
-        background: black;
+    &--black {
+        background: #000000;
+        border: 2px solid #000000;
+        transition: .3s all ease;
+
+        &:hover {
+            background: transparent;
+            transition: .3s all ease;
+
+            .text {
+                color: #000000 !important;
+            }
+
+            svg {
+                path {
+                    fill: #000000 !important;
+                }
+            }
+        }
     }
 
     &--edit {

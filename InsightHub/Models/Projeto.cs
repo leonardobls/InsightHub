@@ -26,7 +26,6 @@ namespace InsightHub.Models
 
         public virtual SubareaConhecimento? Subarea { get; set; }
 
-        [NotMapped]
         public virtual List<int>? Pesquisadores { get; set; }
     }
 }

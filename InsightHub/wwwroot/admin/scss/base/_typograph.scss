@@ -10,12 +10,21 @@
         font-size: 1.5rem;
     }
 
+    &--16 {
+        font-size: 1.6rem;
+    }
+
     &--20 {
         font-size: 2rem;
     }
 
+    &--30 {
+        font-size: 3rem;
+    }
+
     &--40 {
         font-size: 4rem;
+        letter-spacing: -7%;
     }
 
     &--fw200 {
@@ -54,11 +63,24 @@
         color: #000000;
     }
 
-    &--center {
-        text-align: center;
-    }
-
     &--toupper {
         text-transform: uppercase;
+    }
+}
+
+.title {
+    font-family: "League Spartan", sans-serif;
+    line-height: 100%;
+
+    &--40 {
+        font-size: 4rem;
+    }
+
+    &--fw700 {
+        font-weight: 700;
+    }
+
+    &--white {
+        color: #FFFFFF;
     }
 }

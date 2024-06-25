@@ -1,0 +1,106 @@
+@using InsightHub.Models;
+@{
+    ViewData["Title"] = "Edição de Captações de Recursos";
+    Layout = "_LayoutUnscoped";
+}
+<div class="insert-form">
+    <link rel="stylesheet" href="~/admin/css/main.css" asp-append-version="true" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            font-size: 2em;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            display: grid;
+            justify-items: center;
+        }
+
+        label {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 3px black solid;
+            border-radius: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        select {
+            width: 100%;
+            height: 40px;
+            border-radius: 10px;
+            top: 14px;
+            right: 10px;
+            background-color: transparent;
+            border: 2px black solid;
+        }
+    </style>
+
+    <h1>Edição de Captações de Recursos</h1>
+    <br>
+    <form
+        action="@(ViewBag.Subarea != null ? "/gerenciador/subareas/edit-form/"+ViewBag.Subarea.Id : "/gerenciador/subareas/edit-form")"
+        enctype="multipart/form-data" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="Nome" value="@(ViewBag.Subarea != null ? ViewBag.Subarea.Nome : null)">
+
+        <label for="numero">Numero:</label>
+        <input type="text" id="numero" name="numero" value="@(ViewBag.Subarea != null ? ViewBag.Subarea.Numero : null)">
+
+        <label for="area">Área:</label>
+        <select id="area" name="AreaKey">
+
+            @if (ViewBag.Subarea != null)
+            {
+                <option value="0" selected>Selecione um item</option>
+            }
+            else
+            {
+                <option value="0">Selecione um item</option>
+            }
+
+            @foreach (AreaConhecimento item in ViewBag.Areas)
+            {
+                if (ViewBag.Subarea != null && ViewBag.Subarea.AreaKey == item.Id)
+                {
+                    <option value=" @item.Id" selected>@item.Nome</option>
+                }
+                else
+                {
+                    <option value="@item.Id">@item.Nome</option>
+                }
+            }
+        </select>
+
+        <button type="submit" class="button button--add">Cadastrar</button>
+    </form>
+</div>

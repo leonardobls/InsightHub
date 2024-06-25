@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -47,11 +48,18 @@ namespace InsightHub.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: false),
                     Numero = table.Column<string>(type: "text", nullable: false),
-                    AreaKey = table.Column<int>(type: "integer", nullable: false)
+                    AreaKey = table.Column<int>(type: "integer", nullable: false),
+                    AreaConhecimentoId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SubareaConhecimento", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SubareaConhecimento_AreaConhecimento_AreaConhecimentoId",
+                        column: x => x.AreaConhecimentoId,
+                        principalTable: "AreaConhecimento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,7 +92,8 @@ namespace InsightHub.Data.Migrations
                     Nome = table.Column<string>(type: "text", nullable: false),
                     DataInicio = table.Column<DateOnly>(type: "date", nullable: false),
                     DataFim = table.Column<DateOnly>(type: "date", nullable: false),
-                    SubareaId = table.Column<int>(type: "integer", nullable: false)
+                    SubareaId = table.Column<int>(type: "integer", nullable: false),
+                    Pesquisadores = table.Column<List<int>>(type: "integer[]", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -197,14 +206,16 @@ namespace InsightHub.Data.Migrations
                 name: "IX_ProjetoPesquisadorPivot_ProjetoId",
                 table: "ProjetoPesquisadorPivot",
                 column: "ProjetoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubareaConhecimento_AreaConhecimentoId",
+                table: "SubareaConhecimento",
+                column: "AreaConhecimentoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AreaConhecimento");
-
             migrationBuilder.DropTable(
                 name: "Captacao");
 
@@ -225,6 +236,9 @@ namespace InsightHub.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "SubareaConhecimento");
+
+            migrationBuilder.DropTable(
+                name: "AreaConhecimento");
         }
     }
 }
