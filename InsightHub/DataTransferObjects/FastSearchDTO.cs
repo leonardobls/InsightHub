@@ -4,7 +4,8 @@ namespace InsightHub.DataTransferObjects
     {
         public string? FastSearch { get; set; }
         public string? Goal { get; set; }
-        public string? Area { get; set; }
+        public int? AreaId { get; set; }
+        public int? SubareaId { get; set; }
 
     }
 }

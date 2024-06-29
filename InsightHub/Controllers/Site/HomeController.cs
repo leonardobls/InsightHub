@@ -10,6 +10,7 @@ public class HomeController : Controller
 {
     public async Task<IActionResult> Index([FromServices] AppDbContext context)
     {
+        ViewBag.Areas = await context.AreaConhecimento.ToListAsync();
         ViewBag.Subareas = await context.SubareaConhecimento.ToListAsync();
         return View();
     }

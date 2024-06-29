@@ -20,8 +20,10 @@ function openInput() {
 
     // Adiciona o manipulador de eventos ao documento
     $(document).on("click", function (event) {
-        // Verifica se o clique foi fora do parent do .js-input-trigger
-        if (!$(event.target).closest(".js-input-trigger").parent().hasClass("active")) {
+        // Verifica se o clique foi fora do parent do .js-input-trigger e fora do .input-options
+        if (!$(event.target).closest(".js-input-trigger").parent().hasClass("active") &&
+            $(event.target).closest(".js-input-trigger").length === 0 &&
+            $(event.target).closest(".select-options").length === 0) {
             $(".js-input-trigger").parent().removeClass("active");
         }
     });

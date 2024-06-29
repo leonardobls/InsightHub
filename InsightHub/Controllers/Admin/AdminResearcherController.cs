@@ -47,11 +47,11 @@ public class AdminResearcherController : Controller
     {
         if (Id != null)
         {
-            var subarea = context.SubareaConhecimento.First(x => x.Id == model.SubareaKey);
+            var subarea = context.SubareaConhecimento.First(x => x.Id == model.SubareaId);
             var pesquisador = context.Pesquisador.First(a => a.Id == Id);
             pesquisador.Nome = model.Nome;
             pesquisador.Email = model.Email;
-            pesquisador.SubareaKey = model.SubareaKey;
+            pesquisador.SubareaId = model.SubareaId;
             pesquisador.Subarea = subarea;
         }
         else
@@ -71,7 +71,7 @@ public class AdminResearcherController : Controller
                 [FromForm] Pesquisador model)
     {
         // Encontra a Subarea associada
-        var subarea = await context.SubareaConhecimento.FindAsync(model.SubareaKey);
+        var subarea = await context.SubareaConhecimento.FindAsync(model.SubareaId);
 
         if (subarea == null)
         {

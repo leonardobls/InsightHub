@@ -21,7 +21,7 @@ public class AdminAreasController : Controller
             Nome = c.Nome,
             Numero = c.Numero,
         })
-            .OrderBy(x => x.Nome)
+            .OrderBy(x => x.Id)
             .Skip((currentPage - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();

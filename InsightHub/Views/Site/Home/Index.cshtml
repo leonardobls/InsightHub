@@ -63,32 +63,23 @@
                                 <div class="scroll-wrap">
                                     <div class="scroll">
                                         <div class="radio-group">
-                                            <input id="type--1" type="radio" class="radio-input" name="Type" />
+                                            <input id="type--1" type="radio" class="radio-input" value="ambos"
+                                                name="Goal" />
                                             <label for="type--1" class="radio-label">
                                                 <span class="radio-button"></span>
                                                 Ambos</label>
                                         </div>
                                         <div class="radio-group">
-                                            <input id="type--2" type="radio" class="radio-input" name="Type" />
+                                            <input id="type--2" type="radio" class="radio-input" value="projeto"
+                                                name="Goal" />
                                             <label for="type--2" class="radio-label">
                                                 <span class="radio-button"></span>
                                                 Projeto</label>
                                         </div>
                                         <div class="radio-group">
-                                            <input id="type--3" type="radio" class="radio-input" name="Type" />
+                                            <input id="type--3" type="radio" class="radio-input" value="pesquisador"
+                                                name="Goal" />
                                             <label for="type--3" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Pesquisador</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--4" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--4" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Projeto</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--5" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--5" class="radio-label">
                                                 <span class="radio-button"></span>
                                                 Pesquisador</label>
                                         </div>
@@ -97,59 +88,59 @@
                             </div>
                         </div>
                     </div>
-                    <div class="select">
-                        <div class="text text--13 text--black text--fw700 text--toupper mb-1">Categoria</div>
-                        <div class="select-input js-select-input">
-                            <div class="select-placeholder js-input-trigger">Selecione uma opção
-                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
-                                        fill="black" />
-                                </svg>
-                            </div>
-                            <div class="select-options">
-                                <div class="scroll-wrap">
-                                    <div class="scroll">
-                                        <div class="radio-group">
-                                            <input id="category--1" type="radio" class="radio-input" name="Category" />
-                                            <label for="type--1" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                <div class="label-text">Artigo Científico</div>
-                                            </label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="category--2" type="radio" class="radio-input" name="Category" />
-                                            <label for="type--2" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                <div class="label-text">Revisão Sistemática</div>
-                                            </label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="category--3" type="radio" class="radio-input" name="Category" />
-                                            <label for="type--3" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                <div class="label-text">Livro ou Capítulo de Livro</div>
-                                            </label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="category--4" type="radio" class="radio-input" name="Category" />
-                                            <label for="type--4" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                <div class="label-text">Tese ou Dissertação</div>
-                                            </label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="category--5" type="radio" class="radio-input" name="Category" />
-                                            <label for="type--5" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                <div class="label-text">Participação em Conferências</div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    @* <div class="select">
+                    <div class="text text--13 text--black text--fw700 text--toupper mb-1">Categoria</div>
+                    <div class="select-input js-select-input">
+                    <div class="select-placeholder js-input-trigger">Selecione uma opção
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
+                    fill="black" />
+                    </svg>
                     </div>
+                    <div class="select-options">
+                    <div class="scroll-wrap">
+                    <div class="scroll">
+                    <div class="radio-group">
+                    <input id="category--1" type="radio" class="radio-input" name="Category" />
+                    <label for="type--1" class="radio-label">
+                    <span class="radio-button"></span>
+                    <div class="label-text">Artigo Científico</div>
+                    </label>
+                    </div>
+                    <div class="radio-group">
+                    <input id="category--2" type="radio" class="radio-input" name="Category" />
+                    <label for="type--2" class="radio-label">
+                    <span class="radio-button"></span>
+                    <div class="label-text">Revisão Sistemática</div>
+                    </label>
+                    </div>
+                    <div class="radio-group">
+                    <input id="category--3" type="radio" class="radio-input" name="Category" />
+                    <label for="type--3" class="radio-label">
+                    <span class="radio-button"></span>
+                    <div class="label-text">Livro ou Capítulo de Livro</div>
+                    </label>
+                    </div>
+                    <div class="radio-group">
+                    <input id="category--4" type="radio" class="radio-input" name="Category" />
+                    <label for="type--4" class="radio-label">
+                    <span class="radio-button"></span>
+                    <div class="label-text">Tese ou Dissertação</div>
+                    </label>
+                    </div>
+                    <div class="radio-group">
+                    <input id="category--5" type="radio" class="radio-input" name="Category" />
+                    <label for="type--5" class="radio-label">
+                    <span class="radio-button"></span>
+                    <div class="label-text">Participação em Conferências</div>
+                    </label>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div> *@
                     <div class="select">
                         <p class="text text--13 text--black text--fw700 text--toupper mb-1">ÁREA DO CONHECIMENTO</p>
                         <div class="select-input js-select-input">
@@ -163,36 +154,17 @@
                             <div class="select-options">
                                 <div class="scroll-wrap">
                                     <div class="scroll">
-                                        <div class="radio-group">
-                                            <input id="type--1" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--1" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Ambos</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--2" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--2" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Projeto</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--3" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--3" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Pesquisador</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--4" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--4" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Projeto</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--5" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--5" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Pesquisador</label>
-                                        </div>
+                                        @foreach (var area in ViewBag.Areas)
+                                        {
+                                            <div class="radio-group">
+                                                <input id="area--@area.Id" type="radio" class="radio-input" value="@area.Id"
+                                                    name="AreaId" />
+                                                <label for="area--@area.Id" class="radio-label">
+                                                    <span class="radio-button"></span>
+                                                    @area.Nome
+                                                </label>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +172,7 @@
                     </div>
 
                     <div class="select">
-                        <p class="text text--13 text--black text--fw700 text--toupper mb-1">CURSO</p>
+                        <p class="text text--13 text--black text--fw700 text--toupper mb-1">SUBÁREA</p>
                         <div class="select-input js-select-input">
                             <div class="select-placeholder js-input-trigger">Selecione uma opção
                                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
@@ -212,36 +184,18 @@
                             <div class="select-options">
                                 <div class="scroll-wrap">
                                     <div class="scroll">
-                                        <div class="radio-group">
-                                            <input id="type--1" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--1" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Ambos</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--2" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--2" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Projeto</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--3" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--3" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Pesquisador</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--4" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--4" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Projeto</label>
-                                        </div>
-                                        <div class="radio-group">
-                                            <input id="type--5" type="radio" class="radio-input" name="Type" />
-                                            <label for="type--5" class="radio-label">
-                                                <span class="radio-button"></span>
-                                                Pesquisador</label>
-                                        </div>
+
+                                        @foreach (var subarea in ViewBag.Subareas)
+                                        {
+                                            <div class="radio-group">
+                                                <input id="subarea--@subarea.Id" type="radio" value="@subarea.Id"
+                                                    class="radio-input" name="SubareaId" />
+                                                <label for="subarea--@subarea.Id" class="radio-label">
+                                                    <span class="radio-button"></span>
+                                                    @subarea.Nome
+                                                </label>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>

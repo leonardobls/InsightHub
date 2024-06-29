@@ -47,6 +47,8 @@ public class AdminProjectController : Controller
             .FirstOrDefaultAsync(p => p.Id == Id);
         }
 
+        ViewBag.PesquisadoresRelacionados = await context.ProjetoPesquisadorPivot.Where(x => x.ProjetoId == Id).ToListAsync();
+
         return View();
     }
 
@@ -66,13 +68,64 @@ public class AdminProjectController : Controller
 
                 context.Projeto.Update(projeto);
             }
+
+            var relationsToDelete = await context.ProjetoPesquisadorPivot.Where(x => x.ProjetoId == projeto.Id).ToListAsync();
+
+            if (relationsToDelete != null && relationsToDelete.Count > 0)
+            {
+                foreach (var relation in relationsToDelete)
+                {
+                    context.ProjetoPesquisadorPivot.Remove(relation);
+                }
+
+                _ = await context.SaveChangesAsync();
+
+                if (model.Pesquisadores != null && model.Pesquisadores.Count > 0)
+                {
+                    foreach (int PesquisadorId in model.Pesquisadores)
+                    {
+                        Pesquisador? pesquisador = await context.Pesquisador.FirstOrDefaultAsync(x => x.Id == PesquisadorId);
+                        ProjetoPesquisadorPivot relationToAdd = new()
+                        {
+                            Pesquisador = pesquisador,
+                            Projeto = projeto,
+                            PesquisadorId = PesquisadorId,
+                            ProjetoId = projeto.Id,
+                        };
+
+                        context.ProjetoPesquisadorPivot.Add(relationToAdd);
+                    }
+                }
+            }
+
         }
         else
         {
             context.Projeto.Add(model);
+
+            if (model.Pesquisadores != null && model.Pesquisadores.Count > 0)
+            {
+
+                Projeto? projeto = await context.Projeto.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+                foreach (int PesquisadorId in model.Pesquisadores)
+                {
+                    Pesquisador? pesquisador = await context.Pesquisador.FirstOrDefaultAsync(x => x.Id == PesquisadorId);
+                    ProjetoPesquisadorPivot relationToAdd = new()
+                    {
+                        Pesquisador = pesquisador,
+                        Projeto = projeto,
+                        PesquisadorId = PesquisadorId,
+                        ProjetoId = projeto.Id,
+                    };
+
+                    context.ProjetoPesquisadorPivot.Add(relationToAdd);
+                }
+            }
         }
 
         _ = await context.SaveChangesAsync();
+
         return Redirect("/gerenciador/projetos");
     }
 

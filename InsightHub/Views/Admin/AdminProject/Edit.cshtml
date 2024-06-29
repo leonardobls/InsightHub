@@ -96,10 +96,18 @@
         <select id="subarea" name="Pesquisadores[]" multiple required>
             @foreach (Pesquisador pesquisador in ViewBag.Pesquisadores)
             {
-                @* bool isSelected = ViewBag.Pesquisadores != null && ViewBag.Projeto.Pesqu == pesquisador.Id ? true :
-            false; *@
-                @* selected="@isSelected" *@
-                <option value="@pesquisador.Id">@pesquisador.Nome</option>
+                bool isSelected = false;
+
+                @foreach (var item in ViewBag.PesquisadoresRelacionados)
+                {
+                    isSelected = item.PesquisadorId == pesquisador.Id ? true : false;
+                    if (isSelected)
+                    {
+                        break;
+                    }
+                }
+                <option value="@pesquisador.Id" selected="@isSelected">@pesquisador.Nome</option>
+
             }
         </select>
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using InsightHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InsightHub.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625232401_AlterSubareasModel")]
+    partial class AlterSubareasModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +97,10 @@ namespace InsightHub.Data.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("text");
 
-                    b.Property<int>("SubareaId")
+                    b.Property<int?>("SubareaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SubareaKey")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -248,9 +254,7 @@ namespace InsightHub.Data.Migrations
                 {
                     b.HasOne("InsightHub.Models.SubareaConhecimento", "Subarea")
                         .WithMany()
-                        .HasForeignKey("SubareaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubareaId");
 
                     b.Navigation("Subarea");
                 });
