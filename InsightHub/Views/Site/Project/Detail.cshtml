@@ -49,5 +49,26 @@
                 }
             </div>
         }
+
+        <p class="short-desc text text--15 text--black text--fw400 mb-4">
+        </p>
+
+        @if (ViewBag.Pesquisadores != null)
+        {
+            <h3 class="text text--30 text--fw700 mb-3">Pesquisadores do projeto</h3>
+
+            <div class="productions-carousel js-production-carousel">
+
+                @foreach (var pesquisador in ViewBag.Pesquisadores)
+                {
+                    <div class="item">
+                        <div class="text text--20 text--black text--fw700 mb-3">@pesquisador.Nome</div>
+                        <div class="text text--15 text--black text--fw400 mb-5">@pesquisador.Email</div>
+                    </div>
+                }
+            </div>
+        }
     </div>
+
+    
 </section>
