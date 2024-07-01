@@ -76,9 +76,9 @@ public class AdminCaptacoesController : Controller
         captacao.Valor = model.Valor;
         captacao.Data = model.Data;
         captacao.Fornecedor = model.Fornecedor;
-        captacao.ProjetoKey = model.ProjetoKey;
+        captacao.ProjetoId = model.ProjetoId;
 
-        var projeto = await context.Projeto.FindAsync(model.ProjetoKey);
+        var projeto = await context.Projeto.FindAsync(model.ProjetoId);
 
         if (projeto == null)
         {
@@ -97,7 +97,7 @@ public class AdminCaptacoesController : Controller
     public async Task<IActionResult> Add([FromServices] AppDbContext context,
                 [FromForm] Captacao model)
     {
-        var projeto = await context.Projeto.FindAsync(model.ProjetoKey);
+        var projeto = await context.Projeto.FindAsync(model.ProjetoId);
 
         if (projeto == null)
         {

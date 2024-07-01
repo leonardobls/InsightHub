@@ -206,41 +206,39 @@
         </form>
     </div>
 
-    <div class="home__last-projects">
-        <h2 class="text text--black text--fw600 text--30 mb-5">Projetos Mais Recentes</h2>
-        <div class="projects-list">
-            @for (int i = 0; i < 5; i++)
-            {
-                <div class="card">
-                    <div class="top-row mb-3">
-                        <h3 class="text text--20 text--fw500">A Influência da Atividade Física na Saúde Mental de
-                            Estudantes
-                            Universitários</h3>
-                        <div class="author text text--16 text--fw500">Prof.Dr.Maria da Rosa</div>
-                    </div>
+    @if (ViewBag.Recentes != null)
+    {
+        <div class="home__last-projects">
+            <h2 class="text text--black text--fw600 text--30 mb-5">Projetos Mais Recentes</h2>
+            <div class="projects-list">
+                @foreach (var HomeProjeto in ViewBag.Recentes)
+                {
+                    <div class="card">
+                        <div class="top-row mb-3">
+                            <h3 class="text text--20 text--fw500">@HomeProjeto.Nome</h3>
+                            @* <div class="author text text--16 text--fw500">@HomeProjeto.Pesquisadores[0].Nome</div> *@
+                        </div>
 
-                    <p class="description text text--16 text--fw300 mb-3">Estudo investiga os efeitos positivos da atividade
-                        física na
-                        saúde
-                        mental de estudantes
-                        universitários, destacando a importância da prática regular de exercícios para redução do estresse e
-                        melhoria do bem-estar psicológico.</p>
-                    <div class="bottom-row">
-                        <div class="tags">
-                            <div class="tag text text--16 text--fw500">Ciências da Saúde</div>
-                            <div class="tag text text--16 text--fw500">Saúde Coletiva</div>
-                            <div class="tag text text--16 text--fw500">Psicologia Fisiológica</div>
-                            <div class="tag text text--16 text--fw500">Psicologia</div>
-                        </div>
-                        <div class="date text text--16 text--fw500">
-                            1 de Junho, 2024
+                        <p class="description text text--16 text--fw300 mb-3">@HomeProjeto.DescricaoCurta</p>
+                        <div class="bottom-row">
+                            <div class="tags">
+                                <div class="tag text text--16 text--fw500">@HomeProjeto.Subarea.Nome</div>
+                                @if(HomeProjeto.Subarea.AreaConhecimento != null){
+                                    <div class="tag text text--16 text--fw500">@HomeProjeto.Subarea.AreaConhecimento.Nome</div>
+                                }
+                             
+                                <div class="tag text text--16 text--fw500">Projeto</div>
+                            </div>
+                            <div class="date text text--16 text--fw500">
+                                @HomeProjeto.DataInicio
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
+            <a href="/projetos" class="button button--black">
+                <div class="text text--15 text--white">Ver Mais</div>
+            </a>
         </div>
-        <a href="" class="button button--black">
-            <div class="text text--15 text--white">Ver Mais</div>
-        </a>
-    </div>
+    }
 </section>

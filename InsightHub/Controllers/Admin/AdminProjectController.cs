@@ -62,6 +62,7 @@ public class AdminProjectController : Controller
             if (projeto != null)
             {
                 projeto.Nome = model.Nome;
+                projeto.DescricaoCurta = model.DescricaoCurta;
                 projeto.DataInicio = model.DataInicio;
                 projeto.DataFim = model.DataFim;
                 projeto.SubareaId = model.SubareaId;

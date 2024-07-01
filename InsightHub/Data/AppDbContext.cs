@@ -12,7 +12,6 @@ namespace InsightHub.Data
         public DbSet<Pesquisador> Pesquisador { get; set; }
         public DbSet<Producao> Producao { get; set; }
         public DbSet<Projeto> Projeto { get; set; }
-        public DbSet<ProjetoTipo> ProjetoTipo { get; set; }
         public DbSet<ProjetoPesquisadorPivot> ProjetoPesquisadorPivot { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseNpgsql("Server=localhost;Port=5433;Database=InsightHub;User Id=postgres;Password=1234;");

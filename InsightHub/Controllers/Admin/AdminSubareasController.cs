@@ -49,7 +49,7 @@ public class AdminSubareasController : Controller
     [Route("/gerenciador/subareas/edit-form/{Id?}")]
     public async Task<IActionResult> Insert([FromServices] AppDbContext context, [FromForm] SubareaConhecimento model, int? Id)
     {
-        var area = await context.AreaConhecimento.FindAsync(model.AreaKey);
+        var area = await context.AreaConhecimento.FindAsync(model.AreaId);
 
         if (Id != null)
         {
@@ -58,7 +58,7 @@ public class AdminSubareasController : Controller
             {
                 subarea.Nome = model.Nome;
                 subarea.Numero = model.Numero;
-                subarea.AreaKey = model.AreaKey;
+                subarea.AreaId = model.AreaId;
                 subarea.AreaConhecimento = area;
                 context.SubareaConhecimento.Update(subarea);
             }

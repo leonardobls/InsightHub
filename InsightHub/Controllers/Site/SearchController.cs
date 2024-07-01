@@ -14,11 +14,13 @@ public class SearchController : Controller
     public async Task<IActionResult> List([FromServices] AppDbContext context, [FromForm] FastSearchDTO search)
     {
         ViewBag.Subareas = await context.SubareaConhecimento.ToListAsync();
+        ViewBag.Areas = await context.AreaConhecimento.ToListAsync();
+        ViewBag.Search = search;
 
         var projetosResultado = context.Set<Projeto>().AsQueryable();
         var pesquisadoresResultado = context.Set<Pesquisador>().AsQueryable();
 
-        if (search.FastSearch != null)
+        if (search!.FastSearch != null)
         {
             projetosResultado = projetosResultado.Where(x => x.Nome != null && x.Nome.Trim().ToLower().Contains(search.FastSearch.Trim().ToLower()));
             pesquisadoresResultado = pesquisadoresResultado.Where(x => x.Nome != null && x.Nome.Trim().ToLower().Contains(search.FastSearch.Trim().ToLower()));
@@ -26,8 +28,8 @@ public class SearchController : Controller
 
         if (search.AreaId != null)
         {
-            projetosResultado = projetosResultado.Where(x => x.Subarea != null && x.Subarea.AreaKey == search.AreaId);
-            pesquisadoresResultado = pesquisadoresResultado.Where(x => x.Subarea != null && x.Subarea.AreaKey == search.AreaId);
+            projetosResultado = projetosResultado.Where(x => x.Subarea != null && x.Subarea.AreaId == search.AreaId);
+            pesquisadoresResultado = pesquisadoresResultado.Where(x => x.Subarea != null && x.Subarea.AreaId == search.AreaId);
         }
 
         if (search.SubareaId != null)
@@ -46,8 +48,26 @@ public class SearchController : Controller
             projetosResultado = context.Set<Projeto>().Where(x => false);
         }
 
-        projetosResultado = projetosResultado.Include(x => x.Subarea);
-        pesquisadoresResultado = pesquisadoresResultado.Include(x => x.Subarea);
+        if (search.Order != null && search.Order == "recente")
+        {
+            projetosResultado = projetosResultado.OrderByDescending(x => x.DataInicio);
+            pesquisadoresResultado = pesquisadoresResultado.OrderByDescending(x => x.Id);
+        }
+
+        if (search.Order != null && search.Order == "alfabetica")
+        {
+            projetosResultado = projetosResultado.OrderBy(x => x.Nome);
+            pesquisadoresResultado = pesquisadoresResultado.OrderBy(x => x.Nome);
+        }
+
+        if (search.Order != null && search.Order == "antiga")
+        {
+            projetosResultado = projetosResultado.OrderBy(x => x.DataInicio);
+            pesquisadoresResultado = pesquisadoresResultado.OrderBy(x => x.Id);
+        }
+
+        projetosResultado = projetosResultado.Include(x => x.Subarea).ThenInclude(s => s.AreaConhecimento);
+        pesquisadoresResultado = pesquisadoresResultado.Include(x => x.Subarea).ThenInclude(s => s.AreaConhecimento);
 
         projetosResultado = projetosResultado.AsNoTracking();
         pesquisadoresResultado = pesquisadoresResultado.AsNoTracking();

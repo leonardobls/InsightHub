@@ -4,7 +4,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     padding: 10rem 8rem 0;
 
@@ -12,36 +12,100 @@
         position: relative;
         display: flex;
         gap: 2rem;
-        width: 80%;
+        width: 100%;
 
         .left {
-            height: 100vh;
-            width: 25%;
+            height: fit-content;
+            width: 20%;
             position: sticky;
-            top: 1rem;
+            top: 2rem;
             display: flex;
             flex-direction: column;
             padding-bottom: 1rem;
 
-            .cards {
-                flex: 1;
-                display: grid;
-                grid-template-rows: repeat(4, 1fr);
-                gap: 1rem;
-                padding-bottom: 1rem;
+            form {
+                .cards {
+                    flex: 1;
+                    display: grid;
+                    grid-template-rows: repeat(4, 1fr);
+                    gap: 1rem;
+                    padding-bottom: 1rem;
 
-                .card {
-                    background: #FFF;
-                    border-radius: 1.5rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    .card {
+                        height: calc((90vh - 3rem) / 4);
+                        background: #FFF;
+                        border-radius: 1.5rem;
+                        padding: 2rem;
+                        overflow: hidden;
+
+                        .select-input {
+                            height: 100%;
+
+                            .scroll-wrapper {
+                                height: 100%;
+                                overflow-y: scroll;
+
+                                .scroll {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 1.5rem;
+
+                                    .option {
+                                        .radio-label {
+                                            width: 100%;
+                                            display: flex;
+                                            justify-content: start;
+                                            align-items: center;
+                                            gap: 1rem;
+                                            font-size: 1.5rem;
+                                            cursor: pointer;
+
+                                            .label-text {
+                                                white-space: nowrap;
+                                                width: calc(100% - 3rem);
+                                            }
+                                        }
+
+                                        .radio-button {
+                                            height: 1.5rem;
+                                            width: 1.5rem;
+                                            border: 1px solid #000;
+                                            border-radius: 50%;
+                                            display: inline-block;
+                                            position: relative;
+
+                                            &::after {
+                                                content: "";
+                                                display: block;
+                                                height: 1rem;
+                                                width: 1rem;
+                                                position: absolute;
+                                                border-radius: 50%;
+                                                top: 50%;
+                                                left: 50%;
+                                                transition: opacity 0.1s;
+                                                transform: translate(-50%, -50%);
+                                                background-color: #000;
+                                                opacity: 0;
+                                            }
+                                        }
+
+                                        .radio-input:checked+.radio-label .radio-button:after {
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
 
         .right {
-            width: 75%;
+            width: 85%;
+            min-height: 200vh;
 
             .top-row {
                 width: 100%;
@@ -55,16 +119,53 @@
                 flex-direction: column;
                 gap: 1rem;
 
-                .item {
-                    background: #FFF;
-                    border-radius: 1.5rem;
+                .card {
+                    border-radius: 2rem;
+                    background-color: #fff;
                     padding: 3rem;
+                    margin-bottom: 1rem;
 
-                    .members {
+                    .top-row,
+                    .bottom-row {
                         display: flex;
                         align-items: center;
-                        gap: 1rem;
-                        margin-bottom: 1rem;
+                        justify-content: space-between;
+                    }
+
+                    .description {
+                        width: 80%;
+                        line-height: 150%;
+                        display: -webkit-box;
+                        /* Exibe o contêiner como um box flexível */
+                        -webkit-box-orient: vertical;
+                        /* Define a orientação do box como vertical */
+                        -webkit-line-clamp: 3;
+                        /* Limita o texto a 3 linhas */
+                        overflow: hidden;
+                        /* Esconde o texto que não cabe */
+                    }
+
+                    .tags {
+                        display: flex;
+                        align-items: center;
+                        gap: 3rem;
+                        height: 2rem;
+
+                        .tag {
+                            position: relative;
+
+                            &:not(:last-child) {
+                                &:after {
+                                    content: '';
+                                    position: absolute;
+                                    width: 2px;
+                                    height: 1.5rem;
+                                    background: #000;
+                                    top: 0;
+                                    right: -1.5rem;
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -1,53 +1,160 @@
+@using InsightHub.Models;
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Productions List Page";
+    ViewData["Title"] = "Researcher List Page";
 }
 
 <section class="productions">
-    <h1 class="text text--20 text--white text--fw600 mb-5">Sua busca retornou 21 resultados:</h1>
     <div class="productions__wrapper">
         <div class="left">
             <h3 class="text text--white text--13 mb-2">Filtros</h3>
-            <div class="cards">
-                <div class="card">
-                    <div>Filtro um</div>
+            <form action="/busca" method="POST">
+                <input type="hidden" value="@ViewBag.FastSearch" id="fast-search" name="FastSearch"
+                    style="display: hidden;">
+                <div class="cards">
+                    <div class="card">
+                        <div class="text text--15 text--fw700 text--toupper mb-2">Ordenar por</div>
+                        <div class="select-input">
+                            <div class="scroll-wrapper">
+                                <div class="scroll">
+                                    <div class="option">
+                                        <input class="radio-input" id="recente" name="Order"
+                                            onchange="this.form.submit()" value="recente" type="radio">
+                                        <label class="radio-label" for="recente">
+                                            <span class="radio-button"></span>
+                                            Recentes
+                                        </label>
+                                    </div>
+
+                                    <div class="option">
+                                        <input class="radio-input" id="alfabetica" name="Order"
+                                            onchange="this.form.submit()" value="alfabetica" type="radio">
+                                        <label class="radio-label" for="alfabetica">
+                                            <span class="radio-button"></span>
+                                            Ordem alfabética
+                                        </label>
+                                    </div>
+
+                                    <div class="option">
+                                        <input class="radio-input" id="antigas" name="Order"
+                                            onchange="this.form.submit()" value="antigas" type="radio">
+                                        <label class="radio-label" for="antigas">
+                                            <span class="radio-button"></span>
+                                            Mais antigas
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="text text--15 text--fw700 text--toupper mb-2">Resultados da Busca</div>
+                        <div class="select-input">
+                            <div class="scroll-wrapper">
+                                <div class="scroll">
+                                    <div class="option">
+                                        <input class="radio-input" id="ambos" name="Goal" onchange="this.form.submit()"
+                                            value="ambos" type="radio">
+                                        <label class="radio-label" for="ambos">
+                                            <span class="radio-button"></span>
+                                            Ambos
+                                        </label>
+                                    </div>
+                                    <div class="option">
+                                        <input class="radio-input" id="projeto" name="Goal"
+                                            onchange="this.form.submit()" value="projeto" type="radio">
+                                        <label class="radio-label" for="projeto">
+                                            <span class="radio-button"></span>
+                                            Projetos de pesquisa
+                                        </label>
+                                    </div>
+                                    <div class="option">
+                                        <input class="radio-input" id="pesquisador" name="Goal"
+                                            onchange="this.form.submit()" value="pesquisador" type="radio">
+                                        <label class="radio-label" for="pesquisador">
+                                            <span class="radio-button"></span>
+                                            Pesquisadores
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="text text--15 text--fw700 text--toupper mb-2">Áreas do Conhecimento</div>
+                        <div class="select-input">
+                            <div class="scroll-wrapper">
+                                <div class="scroll">
+                                    @foreach (var area in ViewBag.Areas)
+                                    {
+                                        <div class="option">
+                                            <input class="radio-input" id="area-@area.Id" name="AreaId"
+                                                onchange="this.form.submit()" value="@area.Id" type="radio">
+                                            <label class="radio-label" for="area-@area.Id">
+                                                <span class="radio-button"></span>
+                                                @area.Nome
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="text text--15 text--fw700 text--toupper mb-2">Subáreas do Conhecimento</div>
+                        <div class="select-input">
+                            <div class="scroll-wrapper">
+                                <div class="scroll">
+                                    @foreach (var subarea in ViewBag.Subareas)
+                                    {
+                                        <div class="option">
+                                            <input class="radio-input" id="subarea-@subarea.Id" name="SubareaId"
+                                                onchange="this.form.submit()" value="@subarea.Id" type="radio">
+                                            <label class="radio-label" for="subarea-@subarea.Id">
+                                                <span class="radio-button"></span>
+                                                @subarea.Nome
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="card">
-                    <div>Filtro um</div>
-                </div>
-                <div class="card">
-                    <div>Filtro um</div>
-                </div>
-                <div class="card">
-                    <div>Filtro um</div>
-                </div>
-            </div>
+            </form>
         </div>
         <div class="right">
             <div class="top-row mb-2">
                 <div class="order text text--white text--13">Ordenar por: <strong>Mais Relevante</strong></div>
-                <div class="result text text--white text--13">resultado: 1 de 10.000 (página 1 de 5)</div>
             </div>
             <div class="list">
-                @for (int i = 0; i < 10; i++)
+                @if (ViewBag.Projetos != null)
                 {
-                    <a href="projetos/qualquer-coisa" class="item js-open-modal">
-                        <h2 class="text text--black text--20 text--fw600 mb-2">Título da producão</h2>
-                        <p class="text text--black text--15 text--fw400 mb-2">Lorem ipsum dolor sit, amet consectetur
-                            adipisicing
-                            elit.
-                            Aperiam
-                            libero incidunt error fugit quidem
-                            eaque deleniti, consectetur atque illum alias consequatur sed ut, voluptatem cumque ea beatae
-                            autem
-                            laborum enim.
-                        </p>
-                        <div class="members">
-                            <div class="member text text--black text--fw500">Leonardo Bitencourt</div>
-                            <div class="member text text--black text--fw500">Eduardo Pereira</div>
-                        </div>
-                        <div class="complement text text--black text--fw500">Producao em Ingles</div>
-                    </a>
+                    @foreach (Projeto projeto in ViewBag.Projetos)
+                    {
+                        <a href="projetos/@projeto.Id" class="card">
+                            <div class="top-row mb-3">
+                                <h3 class="text text--20 text--fw500">@projeto.Nome</h3>
+                                @* <div class="author text text--16 text--fw500">@projeto.Pesquisadores[0].Nome</div> *@
+                            </div>
+
+                            <p class="description text text--16 text--fw300 mb-3">@projeto.DescricaoCurta</p>
+                            <div class="bottom-row">
+                                <div class="tags">
+                                    <div class="tag text text--16 text--fw500">@projeto.Subarea.Nome</div>
+                                    @if (projeto.Subarea.AreaConhecimento != null)
+                                    {
+                                        <div class="tag text text--16 text--fw500">@projeto.Subarea.AreaConhecimento.Nome</div>
+                                    }
+                                    <div class="tag text text--16 text--fw500">Projeto</div>
+                                </div>
+                                <div class="date text text--16 text--fw500">
+                                    @projeto.DataInicio
+                                </div>
+                            </div>
+                        </a>
+                    }
                 }
             </div>
         </div>

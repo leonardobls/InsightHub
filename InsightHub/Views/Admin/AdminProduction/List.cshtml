@@ -38,9 +38,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Título</th>
-                    <th>Descricao</th>
                     <th>URL</th>
                     <th>Projeto</th>
+                    <th>Tipo</th>
                     <th></th>
                 </tr>
             </thead>
@@ -50,10 +50,9 @@
                     <tr id="row">
                         <td>@producoes.Id</td>
                         <td>@producoes.Titulo</td>
-                        <td>@producoes.Description</td>
                         <td>@producoes.FilePath</td>
                         <td>@(producoes.Projeto != null ? producoes.Projeto.Nome : "N/A")</td>
-                        <td>Pesquisa</td>
+                        <td>@producoes.Tipo</td>
                         <td>
                             <div class="buttons-wrapper">
                                 <a href="producoes/edit/@producoes.Id" class="button button--edit">

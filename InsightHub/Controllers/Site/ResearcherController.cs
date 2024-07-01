@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using InsightHub.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsightHub.Controllers;
 
@@ -7,16 +9,12 @@ namespace InsightHub.Controllers;
 public class ResearcherController : Controller
 {
 
-    [Route("")]
-    public IActionResult Index()
+    [Route("/pesquisador/{Id}")]
+    public async Task<IActionResult> Detail([FromServices] AppDbContext context, int? Id)
     {
-        return View();
-    }
 
-    [Route("{slug}")]
-    public IActionResult Detail(String slug)
-    {
-        ViewBag.TituloDetalhe = slug;
+        ViewBag.Pesquisador = await context.Pesquisador.Where(x => x.Id == Id).FirstAsync();
+        ViewBag.Projetos = await context.ProjetoPesquisadorPivot.Include(x => x.Projeto).Where(x => x.PesquisadorId == Id).ToListAsync();
         return View();
     }
 }

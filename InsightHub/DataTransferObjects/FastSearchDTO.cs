@@ -6,6 +6,6 @@ namespace InsightHub.DataTransferObjects
         public string? Goal { get; set; }
         public int? AreaId { get; set; }
         public int? SubareaId { get; set; }
-
+        public string? Order { get; set; } = "recente";
     }
 }

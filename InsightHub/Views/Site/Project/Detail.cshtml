@@ -11,21 +11,43 @@
 
 <section class="production-detail">
     <div class="production-detail__banner">
-        <div class="breadcrumbs text text--13 text--white text--fw400 mb-5">
-            <a href="/">INÍCIO</a>
-            <a href="/busca">PROJETOS</a>
-            <a href="/projetos/@ViewBag.Projeto.Id">@ViewBag.Projeto.Nome</a>
+        <div class="left">
+            <div class="breadcrumbs text text--13 text--white text--fw400 text--toupper mb-5">
+                <a href="/">INÍCIO</a>
+                <a href="/busca">RESULTADO DA BUSCA</a>
+                <a href="/projetos/@ViewBag.Projeto.Id">@ViewBag.Projeto.Nome</a>
+            </div>
+            <h4 class="text text--40 text--white text--fw600">@ViewBag.Projeto.Nome</h4>
         </div>
-        <h4 class="text text--40 text--white text--fw600">@ViewBag.Projeto.Nome</h4>
+        <div class="right">
+            <div class="date text text--13 text--white text--fw400">Data Início: @ViewBag.Projeto.DataInicio</div>
+            <div class="date text text--13 text--white text--fw400">Data Fim: @ViewBag.Projeto.DataFim
+            </div>
+        </div>
     </div>
     <div class="production-detail__content">
-        <p class="text text--15 text--black text--fw400">@ViewBag.Projeto.DataInicio
-        </p>
-        <p class="text text--15 text--black text--fw400">@ViewBag.Projeto.DataFim
-        </p>
-        <p class="text text--15 text--black text--fw400">@ViewBag.Projeto.SubareaId
+        <p class="short-desc text text--15 text--black text--fw400 mb-4">
+            @ViewBag.Projeto.DescricaoCurta
         </p>
 
-        
+        @if (ViewBag.Productions != null)
+        {
+            <h3 class="text text--30 text--fw700 mb-3">Produções do projeto</h3>
+
+            <div class="productions-carousel js-production-carousel">
+
+                @foreach (var production in ViewBag.Productions)
+                {
+                    <div class="item">
+                        <div class="text text--20 text--black text--fw700 mb-3">@production.Titulo</div>
+                        <div class="text text--15 text--black text--fw400 mb-5">@production.Description</div>
+
+                        <a href="@production.FilePath" target="blank" class="button button--black">
+                            <div class="text text--white text--15 text--fw600">ACESSAR</div>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
     </div>
 </section>

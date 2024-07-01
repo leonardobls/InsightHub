@@ -12,10 +12,11 @@ public class AdminProductionController : Controller
     [Route("/gerenciador/producoes")]
     public async Task<IActionResult> List([FromServices] AppDbContext context, [FromQuery] int? page)
     {
-        int pageSize = 10; // Número de itens por página
-        int currentPage = page ?? 1; // Página atual, padrão é 1 se não for fornecido
+        int pageSize = 10;
+        int currentPage = page ?? 1;
 
-        var producoes = await context.Producao.Select(c => new Producao{
+        var producoes = await context.Producao.Select(c => new Producao
+        {
             Id = c.Id,
             Titulo = c.Titulo,
             Description = c.Description,
@@ -26,7 +27,7 @@ public class AdminProductionController : Controller
             .Skip((currentPage - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
-        
+
         int totalItems = await context.Producao.CountAsync();
         int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
@@ -58,14 +59,9 @@ public class AdminProductionController : Controller
     [Route("/gerenciador/producoes/edit-form/{Id?}")]
     public async Task<IActionResult> Insert([FromServices] AppDbContext context, [FromForm] Producao model, int? Id)
     {
-        var projeto = await context.Projeto.FindAsync(model.ProjetoKey);
 
-        if (projeto == null)
-        {
-            return NotFound("Subarea não encontrada");
-        }
-        model.Projeto = projeto;
-        
+        var projeto = await context.Projeto.FindAsync(model.ProjetoId);
+
         if (Id != null)
         {
 
@@ -76,14 +72,15 @@ public class AdminProductionController : Controller
                 producao.Titulo = model.Titulo;
                 producao.Description = model.Description;
                 producao.FilePath = model.FilePath;
-                producao.ProjetoKey = model.ProjetoKey;
-                producao.Projeto = model.Projeto;
+                producao.ProjetoId = model.ProjetoId;
+                producao.Projeto = projeto;
 
                 context.Producao.Update(producao);
             }
         }
         else
         {
+            model.Projeto = projeto;
             context.Producao.Add(model);
         }
 

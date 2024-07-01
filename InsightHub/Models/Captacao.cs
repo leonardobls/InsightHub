@@ -20,8 +20,8 @@ namespace InsightHub.Models
         [Required]
         public string? Fornecedor { get; set; }
 
-        [ForeignKey("ProjetoKey")]
-        public int ProjetoKey { get; set; }
+        [ForeignKey("ProjetoId")]
+        public int ProjetoId { get; set; }
 
         public virtual Projeto? Proj { get; set; }
     }

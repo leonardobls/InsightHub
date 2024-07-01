@@ -15,8 +15,8 @@ namespace InsightHub.Models
         public string? Numero { get; set; }
 
         [Required]
-        [ForeignKey("AreaKey")]
-        public int AreaKey { get; set; }
+        [ForeignKey("AreaId")]
+        public int AreaId { get; set; }
 
         public virtual AreaConhecimento? AreaConhecimento { get; set; }
     }

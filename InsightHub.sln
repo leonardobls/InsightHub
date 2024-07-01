@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsightHub", "InsightHub\InsightHub.csproj", "{6230DD7A-BABB-4E18-A2E7-D4ADBF9E5DEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsightHub.Test", "InsightHub.Test\InsightHub.Test.csproj", "{B9A34AF6-0BCD-45F0-A4BE-DC8D2C4B6CEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6230DD7A-BABB-4E18-A2E7-D4ADBF9E5DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6230DD7A-BABB-4E18-A2E7-D4ADBF9E5DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6230DD7A-BABB-4E18-A2E7-D4ADBF9E5DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6230DD7A-BABB-4E18-A2E7-D4ADBF9E5DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A34AF6-0BCD-45F0-A4BE-DC8D2C4B6CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A34AF6-0BCD-45F0-A4BE-DC8D2C4B6CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A34AF6-0BCD-45F0-A4BE-DC8D2C4B6CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A34AF6-0BCD-45F0-A4BE-DC8D2C4B6CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

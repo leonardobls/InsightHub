@@ -73,6 +73,10 @@
         <input type="text" id="nome" name="nome" value="@(ViewBag.Projeto != null ? ViewBag.Projeto.Nome : null)"
             required>
 
+        <label for="description">Descrição Curta:</label>
+        <input type="text" id="description" name="DescricaoCurta"
+            value="@(ViewBag.Projeto != null ? ViewBag.Projeto.DescricaoCurta : null)" required>
+
         <label for="dataInicio">Data de Início:</label>
         <input type="date" id="dataInicio" name="dataInicio"
             value="@(ViewBag.Projeto != null && ViewBag.Projeto.DataInicio != null ? DateTime.Parse(ViewBag.Projeto.DataInicio.ToString()).ToString("yyyy-MM-dd") : "")"

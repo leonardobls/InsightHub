@@ -11,6 +11,9 @@ namespace InsightHub.Models
         public string? Nome { get; set; }
 
         [Required]
+        public String? DescricaoCurta { get; set; }
+
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateOnly DataInicio { get; set; }

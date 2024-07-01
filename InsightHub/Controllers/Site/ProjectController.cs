@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using InsightHub.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsightHub.Controllers;
 
@@ -9,16 +10,19 @@ public class ProjectController : Controller
 {
 
     [Route("")]
-    public IActionResult Index()
+    public async Task<IActionResult> Index([FromServices] AppDbContext context)
     {
+        ViewBag.Subareas = await context.SubareaConhecimento.ToListAsync();
+        ViewBag.Areas = await context.AreaConhecimento.ToListAsync();
+        ViewBag.Projetos = await context.Projeto.ToListAsync();
         return View();
     }
 
     [Route("{Id}")]
     public async Task<IActionResult> Detail([FromServices] AppDbContext context, int Id)
     {
-        var projeto = await context.Projeto.FindAsync(Id);
-        ViewBag.Projeto = projeto;
+        ViewBag.Projeto = await context.Projeto.FindAsync(Id);
+        ViewBag.Productions = await context.Producao.Where(x => x.ProjetoId == Id).ToListAsync();
         return View();
     }
 

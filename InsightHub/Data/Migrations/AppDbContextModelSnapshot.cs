@@ -63,10 +63,7 @@ namespace InsightHub.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("ProjId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProjetoKey")
+                    b.Property<int>("ProjetoId")
                         .HasColumnType("integer");
 
                     b.Property<double?>("Valor")
@@ -75,7 +72,7 @@ namespace InsightHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjId");
+                    b.HasIndex("ProjetoId");
 
                     b.ToTable("Captacao");
                 });
@@ -118,11 +115,12 @@ namespace InsightHub.Data.Migrations
                     b.Property<string>("FilePath")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ProjetoId")
+                    b.Property<int>("ProjetoId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ProjetoKey")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
@@ -148,6 +146,10 @@ namespace InsightHub.Data.Migrations
 
                     b.Property<DateOnly>("DataInicio")
                         .HasColumnType("date");
+
+                    b.Property<string>("DescricaoCurta")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -189,23 +191,6 @@ namespace InsightHub.Data.Migrations
                     b.ToTable("ProjetoPesquisadorPivot");
                 });
 
-            modelBuilder.Entity("InsightHub.Models.ProjetoTipo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProjetoTipo");
-                });
-
             modelBuilder.Entity("InsightHub.Models.SubareaConhecimento", b =>
                 {
                     b.Property<int>("Id")
@@ -217,7 +202,7 @@ namespace InsightHub.Data.Migrations
                     b.Property<int?>("AreaConhecimentoId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("AreaKey")
+                    b.Property<int>("AreaId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Nome")
@@ -239,7 +224,9 @@ namespace InsightHub.Data.Migrations
                 {
                     b.HasOne("InsightHub.Models.Projeto", "Proj")
                         .WithMany()
-                        .HasForeignKey("ProjId");
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Proj");
                 });
@@ -259,7 +246,9 @@ namespace InsightHub.Data.Migrations
                 {
                     b.HasOne("InsightHub.Models.Projeto", "Projeto")
                         .WithMany()
-                        .HasForeignKey("ProjetoId");
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Projeto");
                 });
