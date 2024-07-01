@@ -10,11 +10,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace InsightHub.Data.Migrations
+namespace InsightHub.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240701013327_AddTipoToProjects")]
-    partial class AddTipoToProjects
+    [Migration("20240701124233_vamo")]
+    partial class vamo
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -192,23 +192,6 @@ namespace InsightHub.Data.Migrations
                     b.HasIndex("ProjetoId");
 
                     b.ToTable("ProjetoPesquisadorPivot");
-                });
-
-            modelBuilder.Entity("InsightHub.Models.ProjetoTipo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProjetoTipo");
                 });
 
             modelBuilder.Entity("InsightHub.Models.SubareaConhecimento", b =>

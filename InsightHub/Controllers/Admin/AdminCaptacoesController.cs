@@ -29,7 +29,7 @@ public class AdminCaptacoesController : Controller
             .Take(pageSize)
             .ToListAsync();
 
-        int totalItems = await context.Producao.CountAsync();
+        int totalItems = await context.Captacao.CountAsync();
         int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
         ViewBag.CurrentPage = currentPage;

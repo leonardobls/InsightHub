@@ -17,9 +17,9 @@
             </a>
             <div class="breadcrumbs">
                 <a href="/gerenciador">Início</a>
-                <a href="">Listagem Producoes</a>
+                <a href="">Listagem Produções</a>
             </div>
-            <div class="title">Lista de Producoes</div>
+            <div class="title">Lista de Produções</div>
         </div>
         <div class="right">
             <a class="button button--add" href="/gerenciador/producoes/edit">
@@ -84,11 +84,11 @@
         {
             if (i == ViewBag.currentPage)
             {
-                <li><a class="active" href="/gerenciador/projetos?page=@i">@i</a></li>
+                <li><a class="active" href="/gerenciador/producoes?page=@i">@i</a></li>
             }
             else
             {
-                <li><a href="/gerenciador/projetos?page=@i">@i</a></li>
+                <li><a href="/gerenciador/producoes?page=@i">@i</a></li>
             }
         }
     </ul>

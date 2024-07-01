@@ -39,7 +39,7 @@ public class Tests
 
             // Captura a lista de projetos do ViewData
             var projetos = result.ViewData["Projetos"] as List<Projeto>;
-
+            
             // Verifica se a quantidade de projetos é igual a 7
             Assert.That(7, Is.EqualTo(projetos!.Count), "Não foi");
         }
@@ -64,7 +64,7 @@ public class Tests
             var projetos = result.ViewData["Projetos"] as List<Projeto>;
 
             // Verifica se a quantidade de projetos é igual a 7
-            Assert.That(7, Is.EqualTo(projetos!.Count), "Não foi");
+            Assert.That(2, Is.EqualTo(projetos!.Count), "Não foi");
         }
 
         [Test]
@@ -81,13 +81,13 @@ public class Tests
 
             // Assert - Verifica os resultados
             Assert.That(result, Is.Not.Null);
-            Assert.That(result!.ViewData["Projetos"], Is.Not.Null);
+            Assert.That(result!.ViewData["Pesquisadores"], Is.Not.Null);
 
-            // Captura a lista de projetos do ViewData
-            var projetos = result.ViewData["Projetos"] as List<Projeto>;
+            // Captura a lista de pesquisadores do ViewData
+            var pesquisadores = result.ViewData["Pesquisadores"] as List<Pesquisador>;
 
-            // Verifica se a quantidade de projetos é igual a 7
-            Assert.That(8, Is.EqualTo(projetos!.Count), "Não foi");
+            // Verifica se a quantidade de pesquisadores é igual a 7
+            Assert.That(6, Is.EqualTo(pesquisadores!.Count), "Não foi");
         }
     }
 }

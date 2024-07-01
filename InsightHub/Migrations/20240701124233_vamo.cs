@@ -5,10 +5,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace InsightHub.Data.Migrations
+namespace InsightHub.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class vamo : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,19 +28,6 @@ namespace InsightHub.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjetoTipo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Nome = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjetoTipo", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SubareaConhecimento",
                 columns: table => new
                 {
@@ -48,8 +35,8 @@ namespace InsightHub.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: false),
                     Numero = table.Column<string>(type: "text", nullable: false),
-                    AreaKey = table.Column<int>(type: "integer", nullable: false),
-                    AreaConhecimentoId = table.Column<int>(type: "integer", nullable: false)
+                    AreaId = table.Column<int>(type: "integer", nullable: false),
+                    AreaConhecimentoId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,8 +45,7 @@ namespace InsightHub.Data.Migrations
                         name: "FK_SubareaConhecimento_AreaConhecimento_AreaConhecimentoId",
                         column: x => x.AreaConhecimentoId,
                         principalTable: "AreaConhecimento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -70,8 +56,7 @@ namespace InsightHub.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
-                    SubareaKey = table.Column<int>(type: "integer", nullable: false),
-                    SubareaId = table.Column<int>(type: "integer", nullable: true)
+                    SubareaId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,7 +65,8 @@ namespace InsightHub.Data.Migrations
                         name: "FK_Pesquisador_SubareaConhecimento_SubareaId",
                         column: x => x.SubareaId,
                         principalTable: "SubareaConhecimento",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,6 +76,7 @@ namespace InsightHub.Data.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: false),
+                    DescricaoCurta = table.Column<string>(type: "text", nullable: false),
                     DataInicio = table.Column<DateOnly>(type: "date", nullable: false),
                     DataFim = table.Column<DateOnly>(type: "date", nullable: false),
                     SubareaId = table.Column<int>(type: "integer", nullable: false),
@@ -116,17 +103,17 @@ namespace InsightHub.Data.Migrations
                     Data = table.Column<DateOnly>(type: "date", nullable: false),
                     Descricao = table.Column<string>(type: "text", nullable: false),
                     Fornecedor = table.Column<string>(type: "text", nullable: false),
-                    ProjetoKey = table.Column<int>(type: "integer", nullable: false),
-                    ProjId = table.Column<int>(type: "integer", nullable: true)
+                    ProjetoId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Captacao", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Captacao_Projeto_ProjId",
-                        column: x => x.ProjId,
+                        name: "FK_Captacao_Projeto_ProjetoId",
+                        column: x => x.ProjetoId,
                         principalTable: "Projeto",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -136,10 +123,10 @@ namespace InsightHub.Data.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Titulo = table.Column<string>(type: "text", nullable: false),
+                    Tipo = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     FilePath = table.Column<string>(type: "text", nullable: true),
-                    ProjetoKey = table.Column<int>(type: "integer", nullable: false),
-                    ProjetoId = table.Column<int>(type: "integer", nullable: true)
+                    ProjetoId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -148,7 +135,8 @@ namespace InsightHub.Data.Migrations
                         name: "FK_Producao_Projeto_ProjetoId",
                         column: x => x.ProjetoId,
                         principalTable: "Projeto",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,9 +166,9 @@ namespace InsightHub.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Captacao_ProjId",
+                name: "IX_Captacao_ProjetoId",
                 table: "Captacao",
-                column: "ProjId");
+                column: "ProjetoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pesquisador_SubareaId",
@@ -224,9 +212,6 @@ namespace InsightHub.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProjetoPesquisadorPivot");
-
-            migrationBuilder.DropTable(
-                name: "ProjetoTipo");
 
             migrationBuilder.DropTable(
                 name: "Pesquisador");

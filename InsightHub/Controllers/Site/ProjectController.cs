@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using InsightHub.Data;
+using InsightHub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,10 @@ public class ProjectController : Controller
     {
         ViewBag.Projeto = await context.Projeto.FindAsync(Id);
         ViewBag.Productions = await context.Producao.Where(x => x.ProjetoId == Id).ToListAsync();
+
+        var pesquisadoresEnvolvidos = await context.ProjetoPesquisadorPivot.Where(x => x.ProjetoId == Id).ToListAsync();
+        var pesquisadoresIds = pesquisadoresEnvolvidos.Select(x => x.PesquisadorId).ToList();
+        ViewBag.Pesquisadores = await context.Pesquisador.Where(x => pesquisadoresIds.Contains(x.Id)).ToListAsync();
         return View();
     }
 
