@@ -4,20 +4,17 @@ using System.Collections.Generic;
 using InsightHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace InsightHub.Data.Migrations
+namespace InsightHub.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240625135841_InitialMigration")]
-    partial class InitialMigration
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,10 +63,7 @@ namespace InsightHub.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("ProjId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProjetoKey")
+                    b.Property<int>("ProjetoId")
                         .HasColumnType("integer");
 
                     b.Property<double?>("Valor")
@@ -78,7 +72,7 @@ namespace InsightHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProjId");
+                    b.HasIndex("ProjetoId");
 
                     b.ToTable("Captacao");
                 });
@@ -97,10 +91,7 @@ namespace InsightHub.Data.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("text");
 
-                    b.Property<int?>("SubareaId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SubareaKey")
+                    b.Property<int>("SubareaId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -124,11 +115,12 @@ namespace InsightHub.Data.Migrations
                     b.Property<string>("FilePath")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ProjetoId")
+                    b.Property<int>("ProjetoId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ProjetoKey")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
@@ -154,6 +146,10 @@ namespace InsightHub.Data.Migrations
 
                     b.Property<DateOnly>("DataInicio")
                         .HasColumnType("date");
+
+                    b.Property<string>("DescricaoCurta")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -195,23 +191,6 @@ namespace InsightHub.Data.Migrations
                     b.ToTable("ProjetoPesquisadorPivot");
                 });
 
-            modelBuilder.Entity("InsightHub.Models.ProjetoTipo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProjetoTipo");
-                });
-
             modelBuilder.Entity("InsightHub.Models.SubareaConhecimento", b =>
                 {
                     b.Property<int>("Id")
@@ -220,10 +199,10 @@ namespace InsightHub.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AreaConhecimentoId")
+                    b.Property<int?>("AreaConhecimentoId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("AreaKey")
+                    b.Property<int>("AreaId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Nome")
@@ -245,7 +224,9 @@ namespace InsightHub.Data.Migrations
                 {
                     b.HasOne("InsightHub.Models.Projeto", "Proj")
                         .WithMany()
-                        .HasForeignKey("ProjId");
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Proj");
                 });
@@ -254,7 +235,9 @@ namespace InsightHub.Data.Migrations
                 {
                     b.HasOne("InsightHub.Models.SubareaConhecimento", "Subarea")
                         .WithMany()
-                        .HasForeignKey("SubareaId");
+                        .HasForeignKey("SubareaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Subarea");
                 });
@@ -263,7 +246,9 @@ namespace InsightHub.Data.Migrations
                 {
                     b.HasOne("InsightHub.Models.Projeto", "Projeto")
                         .WithMany()
-                        .HasForeignKey("ProjetoId");
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Projeto");
                 });
@@ -302,9 +287,7 @@ namespace InsightHub.Data.Migrations
                 {
                     b.HasOne("InsightHub.Models.AreaConhecimento", "AreaConhecimento")
                         .WithMany()
-                        .HasForeignKey("AreaConhecimentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AreaConhecimentoId");
 
                     b.Navigation("AreaConhecimento");
                 });
