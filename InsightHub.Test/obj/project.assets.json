@@ -7810,19 +7810,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dudue\\.nuget\\packages\\": {}
+    "/Users/leonardobitencourt/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Eduardo\\Trabalhos\\Faculdade\\LaboratorioSoftware\\ProjetoFinal\\outro\\InsightHub\\InsightHub.Test\\InsightHub.Test.csproj",
+      "projectUniqueName": "/Users/leonardobitencourt/Aula/InsightHub/InsightHub.Test/InsightHub.Test.csproj",
       "projectName": "InsightHub.Test",
-      "projectPath": "D:\\Eduardo\\Trabalhos\\Faculdade\\LaboratorioSoftware\\ProjetoFinal\\outro\\InsightHub\\InsightHub.Test\\InsightHub.Test.csproj",
-      "packagesPath": "C:\\Users\\dudue\\.nuget\\packages\\",
-      "outputPath": "D:\\Eduardo\\Trabalhos\\Faculdade\\LaboratorioSoftware\\ProjetoFinal\\outro\\InsightHub\\InsightHub.Test\\obj\\",
+      "projectPath": "/Users/leonardobitencourt/Aula/InsightHub/InsightHub.Test/InsightHub.Test.csproj",
+      "packagesPath": "/Users/leonardobitencourt/.nuget/packages/",
+      "outputPath": "/Users/leonardobitencourt/Aula/InsightHub/InsightHub.Test/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dudue\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/leonardobitencourt/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -7834,8 +7834,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Eduardo\\Trabalhos\\Faculdade\\LaboratorioSoftware\\ProjetoFinal\\outro\\InsightHub\\InsightHub\\InsightHub.csproj": {
-              "projectPath": "D:\\Eduardo\\Trabalhos\\Faculdade\\LaboratorioSoftware\\ProjetoFinal\\outro\\InsightHub\\InsightHub\\InsightHub.csproj"
+            "/Users/leonardobitencourt/Aula/InsightHub/InsightHub/InsightHub.csproj": {
+              "projectPath": "/Users/leonardobitencourt/Aula/InsightHub/InsightHub/InsightHub.csproj"
             }
           }
         }
@@ -7895,7 +7895,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.407\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.406/RuntimeIdentifierGraph.json"
       }
     }
   },

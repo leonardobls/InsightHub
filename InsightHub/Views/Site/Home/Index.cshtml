@@ -8,19 +8,21 @@
     <script src="~/site/js/home.js" asp-append-version="true"></script>
 }
 
-
 <section class="home">
     <div class="home__descriptions">
         <div class="initial-title">
             <img src="/site/images/logo-transparent.png" alt="logo">
-            <h1><span class="title title--40 title--white title--fw700">INSIGHTHUB</span><span
+            <h1><span
+                    class="title title--40 title--white title--fw700">INSIGHTHUB</span><span
                     class="text text--40 text--white">Portal de
                     Conhecimentos
                     UCS</span></h1>
         </div>
         <p class="description text text--white text--20 text--600">
-            Bem-vindo ao Portal de Pesquisas da Universidade de Caxias do Sul. Explore descobertas
-            científicas, inovações e colaborações inspiradoras. Acesse artigos acadêmicos e projetos de pesquisa em
+            Bem-vindo ao Portal de Pesquisas da Universidade de Caxias do Sul.
+            Explore descobertas
+            científicas, inovações e colaborações inspiradoras. Acesse artigos
+            acadêmicos e projetos de pesquisa em
             andamento.
         </p>
     </div>
@@ -28,7 +30,8 @@
     <div class="home__search">
         <form action="/busca" method="POST">
             <div class="simple-search">
-                <h3 class="text text--white text--fw600 text--20">Busca rápida</h3>
+                <h3 class="text text--white text--fw600 text--20">Busca
+                    rápida</h3>
                 <div class="input-wrapper">
                     <label for="fast_search">
                         <input id="fast_search" type="text" name="FastSearch"
@@ -37,26 +40,34 @@
                     </label>
 
                     <button type="submit" class="btn-submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                            viewBox="0 -960 960 960" width="24px"
                             fill="#e8eaed">
                             <path
                                 d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
                         </svg>
-                        <div class="label text text--white text--13 text--fw600">PESQUISAR</div>
+                        <div
+                            class="label text text--white text--13 text--fw600">PESQUISAR</div>
                     </button>
                 </div>
             </div>
 
             <div class="advanced_search">
-                <h3 class="text text--white text--fw600 text--20">Busca rápida</h3>
+                <h3 class="text text--white text--fw600 text--20">Busca
+                    avançada</h3>
                 <div class="filters">
                     <div class="select">
-                        <div class="text text--13 text--black text--fw700 text--toupper mb-1">Tipo de Busca</div>
+                        <div
+                            class="text text--13 text--black text--fw700 text--toupper mb-1">Tipo
+                            de Busca</div>
                         <div class="select-input js-select-input">
-                            <div class="select-placeholder js-input-trigger" id="seach_type">Selecione uma opção
-                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
+                            <div class="select-placeholder js-input-trigger"
+                                id="seach_type">Selecione uma opção
+                                <svg width="10" height="6" viewBox="0 0 10 6"
+                                    fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
+                                    <path
+                                        d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
                                         fill="black" />
                                 </svg>
                             </div>
@@ -64,24 +75,36 @@
                                 <div class="scroll-wrap">
                                     <div class="scroll">
                                         <div class="radio-group">
-                                            <input id="type--1" type="radio" class="radio-input" value="ambos"
+                                            <input id="type--1" type="radio"
+                                                class="radio-input"
+                                                value="ambos"
                                                 name="Goal" />
-                                            <label for="type--1" class="radio-label">
-                                                <span class="radio-button"></span>
+                                            <label for="type--1"
+                                                class="radio-label">
+                                                <span
+                                                    class="radio-button"></span>
                                                 Ambos</label>
                                         </div>
                                         <div class="radio-group">
-                                            <input id="type--2" type="radio" class="radio-input" value="projeto"
+                                            <input id="type--2" type="radio"
+                                                class="radio-input"
+                                                value="projeto"
                                                 name="Goal" />
-                                            <label for="type--2" class="radio-label">
-                                                <span class="radio-button"></span>
+                                            <label for="type--2"
+                                                class="radio-label">
+                                                <span
+                                                    class="radio-button"></span>
                                                 Projeto</label>
                                         </div>
                                         <div class="radio-group">
-                                            <input id="type--3" type="radio" class="radio-input" value="pesquisador"
+                                            <input id="type--3" type="radio"
+                                                class="radio-input"
+                                                value="pesquisador"
                                                 name="Goal" />
-                                            <label for="type--3" class="radio-label">
-                                                <span class="radio-button"></span>
+                                            <label for="type--3"
+                                                class="radio-label">
+                                                <span
+                                                    class="radio-button"></span>
                                                 Pesquisador</label>
                                         </div>
                                     </div>
@@ -90,27 +113,32 @@
                         </div>
                     </div>
 
-                <script>
+                    <script>
                     function updateSelectionGoal() {
                         const selectedOption = document.querySelector('input[name="Goal"]:checked');
                         const label = document.querySelector(`label[for="${selectedOption.id}"]`);
                         document.getElementById("seach_type").textContent = label.textContent.trim();
                     }
-                    
+
                     const radioButtonsGoal = document.querySelectorAll('input[name="Goal"]');
                         radioButtonsGoal.forEach((radio) => {
                         radio.addEventListener('change', updateSelectionGoal);
                     });
                     console.log(radioButtonsGoal)
                 </script>
-                    
+
                     <div class="select">
-                        <p class="text text--13 text--black text--fw700 text--toupper mb-1">ÁREA DO CONHECIMENTO</p>
+                        <p
+                            class="text text--13 text--black text--fw700 text--toupper mb-1">ÁREA
+                            DO CONHECIMENTO</p>
                         <div class="select-input js-select-input">
-                            <div class="select-placeholder js-input-trigger" id="chosen_area">Selecione uma opção
-                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
+                            <div class="select-placeholder js-input-trigger"
+                                id="chosen_area">Selecione uma opção
+                                <svg width="10" height="6" viewBox="0 0 10 6"
+                                    fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
+                                    <path
+                                        d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
                                         fill="black" />
                                 </svg>
                             </div>
@@ -120,10 +148,14 @@
                                         @foreach (var area in ViewBag.Areas)
                                         {
                                             <div class="radio-group">
-                                                <input id="area--@area.Id" type="radio" class="radio-input" value="@area.Id"
+                                                <input id="area--@area.Id"
+                                                    type="radio" class="radio-input"
+                                                    value="@area.Id"
                                                     name="AreaId" />
-                                                <label for="area--@area.Id" class="radio-label">
-                                                    <span class="radio-button"></span>
+                                                <label for="area--@area.Id"
+                                                    class="radio-label">
+                                                    <span
+                                                        class="radio-button"></span>
                                                     @area.Nome
                                                 </label>
                                             </div>
@@ -134,13 +166,13 @@
                         </div>
                     </div>
 
-                <script>
+                    <script>
                     function updateSelectionArea() {
                         const selectedOption = document.querySelector('input[name="AreaId"]:checked');
                         const label = document.querySelector(`label[for="${selectedOption.id}"]`);
                         document.getElementById("chosen_area").textContent = label.textContent.trim();
                     }
-                    
+
                     const radioButtonsArea = document.querySelectorAll('input[name="AreaId"]');
                         radioButtonsArea.forEach((radio) => {
                         radio.addEventListener('change', updateSelectionArea);
@@ -149,12 +181,16 @@
                 </script>
 
                     <div class="select">
-                        <p class="text text--13 text--black text--fw700 text--toupper mb-1">SUBÁREA</p>
+                        <p
+                            class="text text--13 text--black text--fw700 text--toupper mb-1">SUBÁREA</p>
                         <div class="select-input js-select-input">
-                            <div class="select-placeholder js-input-trigger" id="chosen_subarea">Selecione uma opção
-                                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
+                            <div class="select-placeholder js-input-trigger"
+                                id="chosen_subarea">Selecione uma opção
+                                <svg width="10" height="6" viewBox="0 0 10 6"
+                                    fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
+                                    <path
+                                        d="M5 6L0 1.13514L1.16667 0L5 3.72973L8.83333 0L10 1.13514L5 6Z"
                                         fill="black" />
                                 </svg>
                             </div>
@@ -162,13 +198,18 @@
                                 <div class="scroll-wrap">
                                     <div class="scroll">
 
-                                        @foreach (var subarea in ViewBag.Subareas)
+                                        @foreach (var subarea in
+                                        ViewBag.Subareas)
                                         {
                                             <div class="radio-group">
-                                                <input id="subarea--@subarea.Id" type="radio" value="@subarea.Id"
-                                                    class="radio-input" name="SubareaId" />
-                                                <label for="subarea--@subarea.Id" class="radio-label">
-                                                    <span class="radio-button"></span>
+                                                <input id="subarea--@subarea.Id"
+                                                    type="radio" value="@subarea.Id"
+                                                    class="radio-input"
+                                                    name="SubareaId" />
+                                                <label for="subarea--@subarea.Id"
+                                                    class="radio-label">
+                                                    <span
+                                                        class="radio-button"></span>
                                                     @subarea.Nome
                                                 </label>
                                             </div>
@@ -179,13 +220,13 @@
                         </div>
                     </div>
 
-                <script>
+                    <script>
                     function updateSelectionSubarea() {
                         const selectedOption = document.querySelector('input[name="SubareaId"]:checked');
                         const label = document.querySelector(`label[for="${selectedOption.id}"]`);
                         document.getElementById("chosen_subarea").textContent = label.textContent.trim();
                     }
-                    
+
                     const radioButtonsSubarea = document.querySelectorAll('input[name="SubareaId"]');
                         radioButtonsSubarea.forEach((radio) => {
                         radio.addEventListener('change', updateSelectionSubarea);
@@ -200,24 +241,30 @@
     @if (ViewBag.Recentes != null)
     {
         <div class="home__last-projects">
-            <h2 class="text text--black text--fw600 text--30 mb-5">Projetos Mais Recentes</h2>
+            <h2 class="text text--black text--fw600 text--30 mb-5">Projetos Mais
+                Recentes</h2>
             <div class="projects-list">
                 @foreach (var HomeProjeto in ViewBag.Recentes)
                 {
                     <div class="card">
                         <div class="top-row mb-3">
                             <h3 class="text text--20 text--fw500">@HomeProjeto.Nome</h3>
-                            @* <div class="author text text--16 text--fw500">@HomeProjeto.Pesquisadores[0].Nome</div> *@
+                            @* <div class="author text text--16
+                    text--fw500">@HomeProjeto.Pesquisadores[0].Nome</div> *@
                         </div>
 
-                        <p class="description text text--16 text--fw300 mb-3">@HomeProjeto.DescricaoCurta</p>
+                        <p
+                            class="description text text--16 text--fw300 mb-3">@HomeProjeto.DescricaoCurta</p>
                         <div class="bottom-row">
                             <div class="tags">
-                                <div class="tag text text--16 text--fw500">@HomeProjeto.Subarea.Nome</div>
-                                @if(HomeProjeto.Subarea.AreaConhecimento != null){
-                                    <div class="tag text text--16 text--fw500">@HomeProjeto.Subarea.AreaConhecimento.Nome</div>
+                                <div
+                                    class="tag text text--16 text--fw500">@HomeProjeto.Subarea.Nome</div>
+                                @if (HomeProjeto.Subarea.AreaConhecimento != null)
+                                {
+                                    <div
+                                        class="tag text text--16 text--fw500">@HomeProjeto.Subarea.AreaConhecimento.Nome</div>
                                 }
-                             
+
                                 <div class="tag text text--16 text--fw500">Projeto</div>
                             </div>
                             <div class="date text text--16 text--fw500">

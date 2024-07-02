@@ -31,9 +31,9 @@ public class ProjectController : Controller
         return View();
     }
 
-    [Route("favoritos")]
-    public IActionResult Favorites()
-    {
-        return View();
-    }
+    // [Route("favoritos")]
+    // public IActionResult Favorites()
+    // {
+    //     return View();
+    // }
 }

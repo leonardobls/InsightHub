@@ -92,26 +92,26 @@ public class AdminCaptacoesController : Controller
         return Redirect("/gerenciador/captacoes");
     }
 
-    [HttpPost]
-    [Route("/gerenciador/captacoes/add-form")]
-    public async Task<IActionResult> Add([FromServices] AppDbContext context,
-                [FromForm] Captacao model)
-    {
-        var projeto = await context.Projeto.FindAsync(model.ProjetoId);
+    // [HttpPost]
+    // [Route("/gerenciador/captacoes/add-form")]
+    // public async Task<IActionResult> Add([FromServices] AppDbContext context,
+    //             [FromForm] Captacao model)
+    // {
+    //     var projeto = await context.Projeto.FindAsync(model.ProjetoId);
 
-        if (projeto == null)
-        {
-            return NotFound("Subarea não encontrada");
-        }
+    //     if (projeto == null)
+    //     {
+    //         return NotFound("Subarea não encontrada");
+    //     }
 
-        model.Proj = projeto;
+    //     model.Proj = projeto;
 
-        context.Captacao.Add(model);
-        context.SaveChanges();
+    //     context.Captacao.Add(model);
+    //     context.SaveChanges();
 
-        //return Ok();
-        return Redirect("/gerenciador/captacoes");
-    }
+    //     //return Ok();
+    //     return Redirect("/gerenciador/captacoes");
+    // }
 
     [HttpPost]
     [Route("/gerenciador/captacoes/delete")]

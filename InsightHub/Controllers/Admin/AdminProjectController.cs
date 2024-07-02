@@ -12,8 +12,8 @@ public class AdminProjectController : Controller
     [Route("/gerenciador/projetos")]
     public async Task<IActionResult> List([FromServices] AppDbContext context, [FromQuery] int? page)
     {
-        int pageSize = 10; // Número de itens por página
-        int currentPage = page ?? 1; // Página atual, padrão é 1 se não for fornecido
+        int pageSize = 10;
+        int currentPage = page ?? 1;
 
         var projetos = await context.Projeto
             .OrderBy(x => x.Id)
@@ -98,7 +98,22 @@ public class AdminProjectController : Controller
                     }
                 }
             }
+            else
+            {
+                foreach (int PesquisadorId in model.Pesquisadores)
+                {
+                    Pesquisador? pesquisador = await context.Pesquisador.FirstOrDefaultAsync(x => x.Id == PesquisadorId);
+                    ProjetoPesquisadorPivot relationToAdd = new()
+                    {
+                        Pesquisador = pesquisador,
+                        Projeto = projeto,
+                        PesquisadorId = PesquisadorId,
+                        ProjetoId = projeto.Id,
+                    };
 
+                    context.ProjetoPesquisadorPivot.Add(relationToAdd);
+                }
+            }
         }
         else
         {

@@ -49,7 +49,11 @@
                         <td>@subarea.Id</td>
                         <td>@subarea.Nome</td>
                         <td>@subarea.Numero</td>
-                        <td>@subarea.AreaConhecimento.Nome</td>
+                        <td>
+                            @if(subarea.AreaConhecimento != null){
+                                @subarea.AreaConhecimento.Nome
+                            }
+                        </td>
                         <td>
                             <div class="buttons-wrapper">
                                 <a href="/gerenciador/subareas/edit/@subarea.Id" class="button button--edit">
