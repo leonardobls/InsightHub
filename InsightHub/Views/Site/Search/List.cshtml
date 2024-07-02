@@ -24,8 +24,11 @@
         <div class="left">
             <h3 class="text text--white text--13 mb-2">Filtros</h3>
             <form action="/busca" method="POST">
-                <input type="hidden" value="@ViewBag.FastSearch" id="fast-search" name="FastSearch"
+                <input type="hidden" value="@ViewBag.Search.FastSearch" id="fast-search" name="FastSearch"
                     style="display: hidden;">
+                <script>
+                    console.log(document.getElementById("fast-search").value)
+                </script>
                 <div class="cards">
                     <div class="card">
                         <div class="text text--15 text--fw700 text--toupper mb-2">Ordenar por</div>
