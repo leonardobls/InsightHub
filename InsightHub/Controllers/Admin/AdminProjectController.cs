@@ -118,6 +118,7 @@ public class AdminProjectController : Controller
         else
         {
             context.Projeto.Add(model);
+            await context.SaveChangesAsync();
 
             if (model.Pesquisadores != null && model.Pesquisadores.Count > 0)
             {
