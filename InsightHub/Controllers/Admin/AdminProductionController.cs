@@ -21,6 +21,7 @@ public class AdminProductionController : Controller
             Titulo = c.Titulo,
             Description = c.Description,
             FilePath = c.FilePath,
+            Tipo = c.Tipo,
             Projeto = (c.Projeto as Projeto)
         })
             .OrderBy(x => x.Id)

@@ -77,7 +77,7 @@
         <input type="text" id="numero" name="numero" value="@(ViewBag.Subarea != null ? ViewBag.Subarea.Numero : null)">
 
         <label for="area">Área:</label>
-        <select id="area" name="AreaKey">
+        <select id="area" name="AreaId">
 
             @if (ViewBag.Subarea != null)
             {
@@ -90,7 +90,7 @@
 
             @foreach (AreaConhecimento item in ViewBag.Areas)
             {
-                if (ViewBag.Subarea != null && ViewBag.Subarea.AreaKey == item.Id)
+                if (ViewBag.Subarea != null && ViewBag.Subarea.AreaId == item.Id)
                 {
                     <option value=" @item.Id" selected>@item.Nome</option>
                 }

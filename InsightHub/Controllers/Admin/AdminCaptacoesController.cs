@@ -59,36 +59,34 @@ public class AdminCaptacoesController : Controller
         return View();
     }
 
-    [Route("/gerenciador/captacoes/edit-form/{Id}")]
-    public async Task<IActionResult> Update([FromServices] AppDbContext context, [FromForm] Captacao model, int Id)
+    [Route("/gerenciador/captacoes/edit-form/{Id?}")]
+    public async Task<IActionResult> Insert([FromServices] AppDbContext context, [FromForm] Captacao model, int? Id)
     {
-        model.Id = Id;
-        var captacao = context.Captacao.FirstOrDefault(a => a.Id == Id);
-        //projeto = model;
-
-        if (captacao == null)
-        {
-            // Se a instância não for encontrada, retornar um erro ou redirecionar
-            return NotFound();
-        }
-
-        // Atualizar os valores dos campos
-        captacao.Valor = model.Valor;
-        captacao.Data = model.Data;
-        captacao.Fornecedor = model.Fornecedor;
-        captacao.ProjetoId = model.ProjetoId;
 
         var projeto = await context.Projeto.FindAsync(model.ProjetoId);
 
-        if (projeto == null)
+        if (Id != null)
         {
-            return NotFound("Subarea não encontrada");
+            var captacao = await context.Captacao.FindAsync(Id);
+
+            if (captacao != null)
+            {
+                captacao.Valor = model.Valor;
+                captacao.Data = model.Data;
+                captacao.Descricao = model.Descricao;
+                captacao.Fornecedor = model.Fornecedor;
+                captacao.ProjetoId = model.ProjetoId;
+                captacao.Proj = projeto;
+
+                context.Captacao.Update(captacao);
+            }
+        }
+        else
+        {
+            context.Captacao.Add(model);
         }
 
-        captacao.Proj = projeto;
-
-        context.SaveChanges();
-
+        _ = await context.SaveChangesAsync();
         return Redirect("/gerenciador/captacoes");
     }
 

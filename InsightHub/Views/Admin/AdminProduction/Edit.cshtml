@@ -73,6 +73,10 @@
         <input type="text" id="titulo" name="titulo"
             value="@(ViewBag.Producao != null ? ViewBag.Producao.Titulo : null)" required>
 
+        <label for="tipo">Tipo:</label>
+        <input type="text" id="tipo" name="Tipo"
+            value="@(ViewBag.Producao != null ? ViewBag.Producao.Tipo : null)" required>
+
         <label for="description">Descricao:</label>
         <input type="text" id="description" name="description"
             value="@(ViewBag.Producao != null && ViewBag.Producao.Description != null ? ViewBag.Producao.Description : "")"
@@ -83,11 +87,11 @@
             value="@(ViewBag.Producao != null && ViewBag.Producao.FilePath != null ? ViewBag.Producao.FilePath  : "")"
             required>
 
-        <label for="projetoKey">Projeto de origem:</label>
-        <select id="projetoKey" name="ProjetoId" required>
+        <label for="projetoId">Projeto de origem:</label>
+        <select id="projetoId" name="ProjetoId" required>
             @foreach (Projeto item in ViewBag.Projetos)
             {
-                bool isSelected = ViewBag.Producao != null && ViewBag.Producao.ProjetoKey == item.Id ? true : false;
+                bool isSelected = ViewBag.Producao != null && ViewBag.Producao.ProjetoId == item.Id ? true : false;
                 <option value="@item.Id" selected="@isSelected">@item.Nome</option>
             }
         </select>

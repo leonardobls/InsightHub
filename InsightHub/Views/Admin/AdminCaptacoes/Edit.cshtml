@@ -59,12 +59,12 @@
 
         <h1>Edição de Captações de Recursos</h1>
         <br>
-        <form action="@(ViewBag.Captacao != null ? "/gerenciador/captacoes/edit-form/"+ViewBag.Captacao.Id : "/gerenciador/captacoes/add-form")"
+        <form action="@(ViewBag.Captacao != null ? "/gerenciador/captacoes/edit-form/"+ViewBag.Captacao.Id : "/gerenciador/captacoes/edit-form")"
         enctype="multipart/form-data" method="post">
-             <label for="projeto_vinculado">Área do projeto:</label>
-                <select id="projeto_vinculado" name="projetokey" required>
+             <label for="projeto_vinculado">Projetos:</label>
+                <select id="projeto_vinculado" name="ProjetoId" required>
                     @foreach (Projeto projeto in ViewBag.Projetos){
-                        if (ViewBag.Captacao != null && ViewBag.Captacao.ProjetoKey == projeto.Id){
+                        if (ViewBag.Captacao != null && ViewBag.Captacao.ProjetoId == projeto.Id){
                             <option value="@projeto.Id" selected>@projeto.Nome</option>
                         }else{
                             <option value="@projeto.Id">@projeto.Nome</option>

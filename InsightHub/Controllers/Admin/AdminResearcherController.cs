@@ -21,7 +21,7 @@ public class AdminResearcherController : Controller
             .Take(pageSize)
             .ToListAsync();
 
-        int totalItems = await context.Projeto.CountAsync();
+        int totalItems = await context.Pesquisador.CountAsync();
         int totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
         ViewBag.CurrentPage = currentPage;
